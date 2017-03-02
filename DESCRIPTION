@@ -9,7 +9,10 @@ Depends:
     R (>= 3.2.3)
 Imports: stats
 Suggests: testthat
+NeedsCompilation: yes
 License: GPL (>= 3) + file LICENSE
+LicenseNote: The distances packages includes the ANN library
+    (distributed under the LGPLv2.1 license).
 URL: https://github.com/fsavje/distances
 BugReports: https://github.com/fsavje/distances/issues
 Encoding: UTF-8
