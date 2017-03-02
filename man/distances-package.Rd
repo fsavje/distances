@@ -3,7 +3,6 @@
 \docType{package}
 \name{distances-package}
 \alias{distances-package}
-\alias{distances}
 \title{distances: Distance metric tools for R}
 \description{
 Tools for distances and metrics.

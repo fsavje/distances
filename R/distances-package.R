@@ -34,7 +34,6 @@
 #'
 #' @docType package
 #' @name distances-package
-#' @aliases distances
 NULL
 
 .onAttach <- function(libname, pkgname) {
