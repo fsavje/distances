@@ -1,0 +1,16 @@
+Package: distances
+Type: Package
+Title: Distance metric tools for R
+Version: 0.0.1
+Date: 2017-03-01
+Authors@R: c(person("Fredrik", "Savje", email = "fredrik.savje@berkeley.edu", role = c("aut", "cre")))
+Description: Distance metric tools for R.
+Depends:
+    R (>= 3.2.3)
+Imports: stats
+Suggests: testthat
+License: GPL (>= 3) + file LICENSE
+URL: https://github.com/fsavje/distances
+BugReports: https://github.com/fsavje/distances/issues
+Encoding: UTF-8
+RoxygenNote: 6.0.1
