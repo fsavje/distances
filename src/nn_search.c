@@ -21,6 +21,7 @@
 #include "nn_search.h"
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
 #include <R.h>
 #include <Rinternals.h>
 #include "error.h"

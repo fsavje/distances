@@ -45,14 +45,21 @@ test_that("`length.distances` dispatches correctly", {
 # as.dist.distances
 # ==============================================================================
 
+test_distances <- distances(matrix(c(0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.3), ncol = 2))
+ref_dist <- dist(matrix(c(0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.3), ncol = 2))
+attr(ref_dist, "method") <- "distances package"
+attr(ref_dist, "call") <- NULL
+
 test_that("`as.dist.distances` returns correct output", {
-  expect_equal(as.dist.distances(distances(matrix(c(0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.3), ncol = 2))),
-               dist(matrix(c(0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.3), ncol = 2)))
+  tmp_test <- as.dist.distances(test_distances)
+  attr(tmp_test, "call") <- NULL
+  expect_equal(tmp_test, ref_dist)
 })
 
 test_that("`as.dist.distances` dispatches correctly", {
-  expect_equal(as.dist(distances(matrix(c(0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.3), ncol = 2))),
-               dist(matrix(c(0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.3), ncol = 2)))
+  tmp_test <- as.dist(test_distances)
+  attr(tmp_test, "call") <- NULL
+  expect_equal(tmp_test, ref_dist)
 })
 
 

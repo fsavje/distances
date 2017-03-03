@@ -18,7 +18,18 @@
 # along with this program. If not, see http://www.gnu.org/licenses/
 # ==============================================================================
 
-
+#' Nearest neighbor search
+#'
+#' Nearest neighbor search
+#'
+#' @param distances ...
+#' @param k ...
+#' @param query_indices ...
+#' @param search_indices ...
+#' @param radius ...
+#'
+#' @return ...
+#'
 #' @useDynLib distances dist_nearest_neighbor_search
 #' @export
 nearest_neighbor_search <- function(distances,
@@ -35,6 +46,16 @@ nearest_neighbor_search <- function(distances,
 }
 
 
+#' Max distance search
+#'
+#' Max distance search
+#'
+#' @param distances ...
+#' @param query_indices ...
+#' @param search_indices ...
+#'
+#' @return ...
+#'
 #' @useDynLib distances dist_max_distance_search
 #' @export
 max_distance_search <- function(distances,

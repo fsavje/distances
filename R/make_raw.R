@@ -19,9 +19,18 @@
 # ==============================================================================
 
 
+#' Distance matrix
+#'
+#' Distance matrix
+#'
+#' @param distances ...
+#' @param point_indices ...
+#'
+#' @return ...
+#'
 #' @useDynLib distances dist_get_dist_matrix
 #' @export
-get_dist_matrix <- function(distances,
+distance_matrix <- function(distances,
                             point_indices = NULL) {
   .Call(dist_get_dist_matrix,
         distances,
@@ -29,9 +38,19 @@ get_dist_matrix <- function(distances,
 }
 
 
+#' Distance rows
+#'
+#' Distance rows
+#'
+#' @param distances ...
+#' @param row_indices ...
+#' @param column_indices ...
+#'
+#' @return ...
+#'
 #' @useDynLib distances dist_get_dist_rows
 #' @export
-get_dist_rows <- function(distances,
+distance_rows <- function(distances,
                           row_indices,
                           column_indices = NULL) {
   .Call(dist_get_dist_rows,

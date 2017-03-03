@@ -25,11 +25,11 @@ length.distances <- function(x) {
   c_num_data_points(x)
 }
 
-
+#' @importFrom stats as.dist
 #' @export
 as.dist.distances <- function(m, diag = FALSE, upper = FALSE) {
   ensure_distances(m)
-  ans <- get_dist_matrix(m)
+  ans <- distance_matrix(m)
   attributes(ans) <- NULL
   if (!is.null(attr(m, "ids", exact = TRUE))) {
     attr(ans, "Labels") <- attr(m, "ids", exact = TRUE)
