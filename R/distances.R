@@ -204,7 +204,8 @@ distances <- function(data,
 #'
 #' @export
 is.distances <- function(obj) {
-  inherits(obj, "distances") &&
+  c_is.distances(obj) &&
+    inherits(obj, "distances") &&
     is.matrix(obj) &&
     is.numeric(obj) &&
     (is.null(attr(obj, "ids", exact = TRUE)) ||
@@ -216,29 +217,4 @@ is.distances <- function(obj) {
     !is.null(attr(obj, "weights", exact = TRUE)) &&
     is.matrix(attr(obj, "weights", exact = TRUE)) &&
     is.numeric(attr(obj, "weights", exact = TRUE))
-}
-
-
-#' @export
-length.distances <- function(x) {
-  ensure_distances(x)
-  ncol(x)
-}
-
-
-#' @export
-as.matrix.distances <- function(x, ...) {
-  ensure_distances(x)
-  tmp <- as.matrix(stats::dist(t(unclass(x))))
-  if (!is.null(attr(x, "ids", exact = TRUE))) {
-    colnames(tmp) <- rownames(tmp) <- attr(x, "ids", exact = TRUE)
-  }
-  tmp
-}
-
-
-#' @export
-print.distances <- function(x, ...) {
-  x <- coerce_printable_distances(x)
-  print(as.matrix.distances(x))
 }
