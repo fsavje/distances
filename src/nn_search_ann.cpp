@@ -21,14 +21,23 @@
 #include "nn_search.h"
 #include <cstddef>
 #include <cstdint>
+#include <include/ANN/ANN.h>
+#include "error.h"
+#include "utils.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <R.h>
 #include <Rinternals.h>
 // R defines `length` which collides with the ANN library
 // We don't use it, so we'll remove it
 #undef length
-#include <include/ANN/ANN.h>
-#include "error.h"
-#include "utils.h"
+
+#ifdef __cplusplus
+}
+#endif
 
 
 #ifdef DIST_ANN_BDTREE
