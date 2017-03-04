@@ -29,7 +29,6 @@
 #' @return Returns \code{TRUE} if \code{x} is a valid
 #'         \code{distances} object, otherwise \code{FALSE}.
 #'
-#' @useDynLib distances dist_check_distance_object
 #' @export
 is.distances <- function(x) {
   .Call(dist_check_distance_object,
@@ -37,7 +36,6 @@ is.distances <- function(x) {
 }
 
 
-#' @useDynLib distances dist_num_data_points
 #' @export
 length.distances <- function(x) {
   .Call(dist_num_data_points,

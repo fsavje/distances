@@ -37,6 +37,7 @@
 #' @name distances-package
 NULL
 
+#' @useDynLib distances, .registration = TRUE
 .onUnload <- function (libpath) {
   library.dynam.unload("distances", libpath)
 }

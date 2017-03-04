@@ -31,7 +31,6 @@
 #'
 #' @return Returns a distance matrix of class \code{\link[stats]{dist}}.
 #'
-#' @useDynLib distances dist_get_dist_matrix
 #' @export
 distance_matrix <- function(distances,
                             indices = NULL) {
@@ -57,7 +56,6 @@ distance_matrix <- function(distances,
 #'
 #' @return Returns a matrix with the requested columns.
 #'
-#' @useDynLib distances dist_get_dist_columns
 #' @export
 distance_columns <- function(distances,
                              column_indices,

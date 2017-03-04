@@ -31,7 +31,6 @@
 #'
 #' @return An integer vector with point indices for the data point furthest from each query.
 #'
-#' @useDynLib distances dist_max_distance_search
 #' @export
 max_distance_search <- function(distances,
                                 query_indices = NULL,
@@ -60,7 +59,6 @@ max_distance_search <- function(distances,
 #' @return A matrix with point indices for the nearest neighbors. Columns in this matrix indicate
 #'         queries, and rows are ordered by distances from the query.
 #'
-#' @useDynLib distances dist_nearest_neighbor_search
 #' @export
 nearest_neighbor_search <- function(distances,
                                     k,
