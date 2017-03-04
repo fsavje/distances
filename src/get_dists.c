@@ -43,12 +43,10 @@ SEXP dist_get_dist_matrix(const SEXP R_distances,
 	SEXP R_output_dists = PROTECT(allocVector(REALSXP, (R_xlen_t) (((len_indices - 1) * len_indices) / 2)));
 	double* const output_dists = REAL(R_output_dists);
 
-	if (!idist_get_dist_matrix(R_distances,
-	                           len_indices,
-	                           indices,
-	                           output_dists)) {
-			idist_error("`idist_get_dist_matrix` failed.");
-	}
+	idist_get_dist_matrix(R_distances,
+	                      len_indices,
+	                      indices,
+	                      output_dists);
 
 	setAttrib(R_output_dists, install("Size"), ScalarInteger((int) len_indices));
 	setAttrib(R_output_dists, install("Diag"), ScalarLogical(0));
@@ -87,14 +85,12 @@ SEXP dist_get_dist_columns(const SEXP R_distances,
 	SEXP R_output_dists = PROTECT(allocMatrix(REALSXP, len_row_indices, len_column_indices));
 	double* const output_dists = REAL(R_output_dists);
 
-	if (!idist_get_dist_columns(R_distances,
-	                            len_column_indices,
-	                            column_indices,
-	                            len_row_indices,
-	                            row_indices,
-	                            output_dists)) {
-			idist_error("`idist_get_dist_columns` failed.");
-	}
+	idist_get_dist_columns(R_distances,
+	                       len_column_indices,
+	                       column_indices,
+	                       len_row_indices,
+	                       row_indices,
+	                       output_dists);
 
 	SEXP dimnames = PROTECT(allocVector(VECSXP, 2));
 	SET_VECTOR_ELT(dimnames, 0, get_labels(R_distances, R_row_indices));

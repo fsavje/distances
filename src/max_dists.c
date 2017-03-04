@@ -60,30 +60,23 @@ SEXP dist_max_distance_search(const SEXP R_distances,
 	const int* const search_indices = isInteger(R_search_indices_local) ? INTEGER(R_search_indices_local) : NULL;
 
 	idist_MaxSearch* max_dist_object;
-	if (!idist_init_max_distance_search(R_distances,
-	                                    len_search_indices,
-	                                    search_indices,
-	                                    &max_dist_object)) {
-			idist_error("`idist_init_max_distance_search` failed.");
-	}
+	idist_init_max_distance_search(R_distances,
+	                               len_search_indices,
+	                               search_indices,
+	                               &max_dist_object);
 
 	SEXP R_out_max_indices = PROTECT(allocVector(INTSXP, (R_xlen_t) len_query_indices));
 	int* const out_max_indices = INTEGER(R_out_max_indices);
 	SEXP R_out_max_dists = PROTECT(allocVector(REALSXP, (R_xlen_t) len_query_indices));
 	double* const out_max_dists = REAL(R_out_max_dists);
 
-	if (!idist_max_distance_search(max_dist_object,
-	                               len_query_indices,
-	                               query_indices,
-	                               out_max_indices,
-	                               out_max_dists)) {
-			idist_close_max_distance_search(&max_dist_object);
-			idist_error("`idist_max_distance_search` failed.");
-	}
+	idist_max_distance_search(max_dist_object,
+	                          len_query_indices,
+	                          query_indices,
+	                          out_max_indices,
+	                          out_max_dists);
 
-	if (!idist_close_max_distance_search(&max_dist_object)) {
-			idist_error("`idist_close_max_distance_search` failed.");
-	}
+	idist_close_max_distance_search(&max_dist_object);
 
 	const int* const write_stop = out_max_indices + len_query_indices;
 	for (int* write = out_max_indices; write != write_stop; ++write) {

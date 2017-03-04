@@ -58,12 +58,10 @@ SEXP dist_nearest_neighbor_search(const SEXP R_distances,
 	if (radius_search) idist_assert(radius > 0.0);
 
 	idist_NNSearch* nn_search_object;
-	if (!idist_init_nearest_neighbor_search(R_distances,
-	                                        len_search_indices,
-	                                        search_indices,
-	                                        &nn_search_object)) {
-			idist_error("`idist_init_nearest_neighbor_search` failed.");
-	}
+	idist_init_nearest_neighbor_search(R_distances,
+	                                   len_search_indices,
+	                                   search_indices,
+	                                   &nn_search_object);
 
 	size_t out_num_ok_queries;
 	SEXP R_out_query_indices = PROTECT(allocVector(INTSXP, (R_xlen_t) len_query_indices));
@@ -71,22 +69,17 @@ SEXP dist_nearest_neighbor_search(const SEXP R_distances,
 	SEXP R_out_nn_indices = PROTECT(allocMatrix(INTSXP, k, len_query_indices));
 	int* const out_nn_indices = INTEGER(R_out_nn_indices);
 
-	if (!idist_nearest_neighbor_search(nn_search_object,
-	                                   len_query_indices,
-	                                   query_indices,
-	                                   k,
-	                                   radius_search,
-	                                   radius,
-	                                   &out_num_ok_queries,
-	                                   out_query_indices,
-	                                   out_nn_indices)) {
-			idist_close_nearest_neighbor_search(&nn_search_object);
-			idist_error("`idist_nearest_neighbor_search` failed.");
-	}
+	idist_nearest_neighbor_search(nn_search_object,
+	                              len_query_indices,
+	                              query_indices,
+	                              k,
+	                              radius_search,
+	                              radius,
+	                              &out_num_ok_queries,
+	                              out_query_indices,
+	                              out_nn_indices);
 
-	if (!idist_close_nearest_neighbor_search(&nn_search_object)) {
-		idist_error("`idist_close_nearest_neighbor_search` failed.");
-	}
+	idist_close_nearest_neighbor_search(&nn_search_object);
 
 	if (out_num_ok_queries < len_query_indices) {
 		SEXP R_tmp_nn_indices = R_out_nn_indices;
