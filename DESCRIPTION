@@ -1,14 +1,16 @@
 Package: distances
 Type: Package
 Title: Tools for distances and metrics
-Version: 0.0.1
-Date: 2017-03-01
+Version: 0.1.0
+Date: 2017-03-03
 Authors@R: c(person("Fredrik", "Savje", email = "fredrik.savje@berkeley.edu", role = c("aut", "cre")))
 Description: Provides tools for constructing, manipulating and using distance metrics.
 Depends:
     R (>= 3.2.3)
-Imports: stats
-Suggests: testthat
+Imports:
+    stats
+Suggests:
+    testthat
 NeedsCompilation: yes
 License: GPL (>= 3) + file LICENSE
 LicenseNote: The distances packages includes the ANN library

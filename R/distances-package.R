@@ -36,3 +36,7 @@
 #' @docType package
 #' @name distances-package
 NULL
+
+.onUnload <- function (libpath) {
+  library.dynam.unload("distances", libpath)
+}
