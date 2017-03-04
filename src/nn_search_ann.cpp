@@ -25,7 +25,7 @@
 // R defines `length` which collides with the ANN library
 // We don't use it, so we'll remove it
 #undef length
-#include <include/ANN/ANN.h>
+#include "libann/include/ANN/ANN.h"
 #include "error.h"
 #include "utils.h"
 

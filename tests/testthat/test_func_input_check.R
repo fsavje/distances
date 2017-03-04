@@ -179,8 +179,9 @@ test_that("`max_distance_search` checks input.", {
 wrap_nearest_neighbor_search <- function(distances = sound_distance_object,
                                          k = 2L,
                                          query_indices = sound_indices,
-                                         search_indices = sound_indices) {
-  nearest_neighbor_search(distances, k, query_indices, search_indices)
+                                         search_indices = sound_indices,
+                                         radius = 1) {
+  nearest_neighbor_search(distances, k, query_indices, search_indices, radius)
 }
 
 test_that("`nearest_neighbor_search` checks input.", {
@@ -193,4 +194,6 @@ test_that("`nearest_neighbor_search` checks input.", {
   expect_error(wrap_nearest_neighbor_search(search_indices = unsound_indices))
   expect_error(wrap_nearest_neighbor_search(search_indices = out_of_bounds_indices1))
   expect_error(wrap_nearest_neighbor_search(search_indices = out_of_bounds_indices2))
+  expect_error(wrap_nearest_neighbor_search(radius = "1"))
+  expect_error(wrap_nearest_neighbor_search(radius = -2))
 })

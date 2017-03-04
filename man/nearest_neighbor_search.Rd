@@ -5,7 +5,7 @@
 \title{Nearest neighbor search}
 \usage{
 nearest_neighbor_search(distances, k, query_indices = NULL,
-  search_indices = NULL)
+  search_indices = NULL, radius = NULL)
 }
 \arguments{
 \item{distances}{A \code{\link{distances}} object.}
@@ -17,6 +17,9 @@ all data points in \code{distances} are queried.}
 
 \item{search_indices}{An integer vector with point indices to search among. If \code{NULL},
 all data points in \code{distances} are searched over.}
+
+\item{radius}{Restrict the search to a fixed radius around each query. If fewer than \code{k}
+search points exist within this radius, no neighbors are reported (indicated by \code{NA}).}
 }
 \value{
 A matrix with point indices for the nearest neighbors. Columns in this matrix indicate

@@ -90,12 +90,15 @@ test_that("`max_distance_search` returns correct output", {
 replica_nearest_neighbor_search <- function(distances,
                                             k,
                                             query_indices = NULL,
-                                            search_indices = NULL) {
+                                            search_indices = NULL,
+                                            radius = NULL) {
   if (is.null(query_indices)) query_indices <- 1:length(distances)
   if (is.null(search_indices)) search_indices <- 1:length(distances)
 
   ans <- apply(as.matrix(distances)[query_indices, search_indices],
-               1, function(x) { search_indices[order(x)[1:k]] })
+               1, function(x) {
+                 if (is.null(radius) || x[order(x)[k]] <= radius) { search_indices[order(x)[1:k]] } else { rep(NA, k) }
+               })
 
   if (!is.matrix(ans)) ans <- matrix(ans, ncol = length(ans), dimnames = list(NULL, names(ans)))
   ans
@@ -138,4 +141,41 @@ test_that("`nearest_neighbor_search` returns correct output", {
                    replica_nearest_neighbor_search(my_distances_withID, 2L, 1:10, 1:7))
   expect_identical(nearest_neighbor_search(my_distances_withID, 3L, 4:8, 1:7),
                    replica_nearest_neighbor_search(my_distances_withID, 3L, 4:8, 1:7))
+
+  expect_identical(nearest_neighbor_search(my_distances, 1L, radius = 1),
+                   replica_nearest_neighbor_search(my_distances, 1L, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances, 3L, 1:10, radius = 1),
+                   replica_nearest_neighbor_search(my_distances, 3L, 1:10, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances, 2L, 4:8, radius = 1),
+                   replica_nearest_neighbor_search(my_distances, 2L, 4:8, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances, 3L, NULL, 1:10, radius = 1),
+                   replica_nearest_neighbor_search(my_distances, 3L, NULL, 1:10, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances, 2L, NULL, 4:8, radius = 1),
+                   replica_nearest_neighbor_search(my_distances, 2L, NULL, 4:8, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances_withID, 1L, radius = 1),
+                   replica_nearest_neighbor_search(my_distances_withID, 1L, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances_withID, 3L, 1:10, radius = 1),
+                   replica_nearest_neighbor_search(my_distances_withID, 3L, 1:10, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances_withID, 2L, 4:8, radius = 1),
+                   replica_nearest_neighbor_search(my_distances_withID, 2L, 4:8, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances_withID, 3L, NULL, 1:10, radius = 1),
+                   replica_nearest_neighbor_search(my_distances_withID, 3L, NULL, 1:10, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances_withID, 1L, NULL, 4:8, radius = 1),
+                   replica_nearest_neighbor_search(my_distances_withID, 1L, NULL, 4:8, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances, 3L, 1:10, 1:10, radius = 1),
+                   replica_nearest_neighbor_search(my_distances, 3L, 1:10, 1:10, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances, 3L, 4:8, 1:10, radius = 1),
+                   replica_nearest_neighbor_search(my_distances, 3L, 4:8, 1:10, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances_withID, 3L, 1:10, 1:10, radius = 1),
+                   replica_nearest_neighbor_search(my_distances_withID, 3L, 1:10, 1:10, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances_withID, 1L, 4:8, 1:10, radius = 1),
+                   replica_nearest_neighbor_search(my_distances_withID, 1L, 4:8, 1:10, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances, 3L, 1:10, 1:7, radius = 1),
+                   replica_nearest_neighbor_search(my_distances, 3L, 1:10, 1:7, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances, 2L, 4:8, 1:7, radius = 1),
+                   replica_nearest_neighbor_search(my_distances, 2L, 4:8, 1:7, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances_withID, 2L, 1:10, 1:7, radius = 1),
+                   replica_nearest_neighbor_search(my_distances_withID, 2L, 1:10, 1:7, radius = 1))
+  expect_identical(nearest_neighbor_search(my_distances_withID, 3L, 4:8, 1:7, radius = 1),
+                   replica_nearest_neighbor_search(my_distances_withID, 3L, 4:8, 1:7, radius = 1))
 })

@@ -55,6 +55,7 @@ SEXP dist_nearest_neighbor_search(const SEXP R_distances,
 
 	const bool radius_search = isReal(R_radius);
 	const double radius = radius_search ? asReal(R_radius) : 0.0;
+	if (radius_search) idist_assert(radius > 0.0);
 
 	idist_NNSearch* nn_search_object;
 	if (!idist_init_nearest_neighbor_search(R_distances,

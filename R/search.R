@@ -54,6 +54,8 @@ max_distance_search <- function(distances,
 #'                      all data points in \code{distances} are queried.
 #' @param search_indices An integer vector with point indices to search among. If \code{NULL},
 #'                       all data points in \code{distances} are searched over.
+#' @param radius Restrict the search to a fixed radius around each query. If fewer than \code{k}
+#'               search points exist within this radius, no neighbors are reported (indicated by \code{NA}).
 #'
 #' @return A matrix with point indices for the nearest neighbors. Columns in this matrix indicate
 #'         queries, and rows are ordered by distances from the query.
@@ -63,11 +65,12 @@ max_distance_search <- function(distances,
 nearest_neighbor_search <- function(distances,
                                     k,
                                     query_indices = NULL,
-                                    search_indices = NULL) {
+                                    search_indices = NULL,
+                                    radius = NULL) {
   .Call(dist_nearest_neighbor_search,
         distances,
         coerce_integer(k),
         coerce_integer(query_indices),
         coerce_integer(search_indices),
-        NULL)
+        coerce_double(radius))
 }
