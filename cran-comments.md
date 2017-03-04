@@ -1,5 +1,11 @@
-*** This is a first submission of a new package ***
+# This is a new package not currently on CRAN
 
+
+## Resubmission
+
+This is a resubmission. Compared to the previously submitted version, I have:
+
+  * Removed the file `LICENSE`, as instructed.
 
 
 ## Test environments
@@ -20,7 +26,6 @@
      - R version 3.2.3, 3.2.4, 3.2.5, 3.3.0, 3.3.1, 3.3.2, devel
 
 
-
 ## R CMD check results
 
   * No ERRORs
@@ -33,7 +38,6 @@
     > Maintainer: 'Fredrik Savje <fredrik.savje@berkeley.edu>'
     >
     > New submission
-
 
 
 ## Downstream dependencies
