@@ -215,6 +215,52 @@ test_that("`coerce_distance_data` coerces correctly.", {
 
 
 # ==============================================================================
+# coerce_double
+# ==============================================================================
+
+t_coerce_double <- function(t_x = as.numeric(1:10)) {
+  coerce_double(t_x)
+}
+
+test_that("`coerce_double` checks input.", {
+  expect_silent(t_coerce_double())
+  expect_silent(t_coerce_double(t_x = NULL))
+  expect_silent(t_coerce_double(t_x = 1:10))
+  expect_error(t_coerce_double(t_x = letters[1:10]),
+               regexp = "`t_x` must be double or NULL.")
+})
+
+test_that("`coerce_double` coerces correctly.", {
+  expect_identical(t_coerce_double(), as.numeric(1:10))
+  expect_identical(t_coerce_double(t_x = NULL), NULL)
+  expect_identical(t_coerce_double(t_x = 1:10), as.numeric(1:10))
+})
+
+
+# ==============================================================================
+# coerce_integer
+# ==============================================================================
+
+t_coerce_integer <- function(t_x = 1:10) {
+  coerce_integer(t_x)
+}
+
+test_that("`coerce_integer` checks input.", {
+  expect_silent(t_coerce_integer())
+  expect_silent(t_coerce_integer(t_x = NULL))
+  expect_silent(t_coerce_integer(t_x = as.numeric(1:10)))
+  expect_error(t_coerce_integer(t_x = letters[1:10]),
+               regexp = "`t_x` must be integer or NULL.")
+})
+
+test_that("`coerce_integer` coerces correctly.", {
+  expect_identical(t_coerce_integer(), 1:10)
+  expect_identical(t_coerce_integer(t_x = NULL), NULL)
+  expect_identical(t_coerce_integer(t_x = as.numeric(1:10)), 1:10)
+})
+
+
+# ==============================================================================
 # coerce_norm_matrix
 # ==============================================================================
 
