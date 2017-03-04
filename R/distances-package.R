@@ -19,24 +19,20 @@
 # ==============================================================================
 
 
-#' distances: Distance metric tools for R
+#' distances: Tools for distances and metrics
 #'
-#' Tools for distances and metrics.
+#' The \code{distances} package provides tools for constructing, manipulating
+#' and using distance metrics. It does not calculate the complete distance matrix
+#' when distance metric objects are created (see \code{\link{distances}}). This
+#' lowers memory use and can increase speed.
 #'
-#' This package is under development, please exercise caution when using it.
-#'
-#' More information and the latest version is found here:
+#' See the package's website for more information:
 #' \url{https://github.com/fsavje/distances}.
 #'
 #' Bug reports and suggestions are greatly appreciated. They
 #' are best reported here:
-#' \url{https://github.com/fsavje/distances/issues}.
+#' \url{https://github.com/fsavje/distances/issues/new}.
 #'
 #' @docType package
 #' @name distances-package
 NULL
-
-.onAttach <- function(libname, pkgname) {
-  packageStartupMessage("The `distances` package is under development. Please exercise caution when using it.")
-  packageStartupMessage("Bug reports and suggestions are greatly appreciated. They are best reported here: https://github.com/fsavje/distances/issues")
-}

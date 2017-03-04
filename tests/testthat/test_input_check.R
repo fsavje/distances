@@ -255,30 +255,3 @@ test_that("`coerce_norm_matrix` coerces correctly.", {
                                                    dimnames = list(c(1:4), letters[1:4]))),
                diag(rep(1, 4)))
 })
-
-
-# ==============================================================================
-# coerce_printable_distances
-# ==============================================================================
-
-t_coerce_printable_distances <- function(t_x = distances(matrix(1:10, nrow = 5))) {
-  coerce_printable_distances(t_x)
-}
-
-test_that("`coerce_printable_distances` checks input.", {
-  expect_silent(t_coerce_printable_distances())
-  expect_error(t_coerce_printable_distances(t_x = "a"),
-               regexp = "`t_x` is not a `distances` object.")
-})
-
-test_that("`coerce_printable_distances` coerces correctly.", {
-  expect_identical(t_coerce_printable_distances(), distances(matrix(1:10, nrow = 5)))
-  expect_warning(expect_identical(t_coerce_printable_distances(t_x = distances(matrix(1:100, nrow = 50))),
-                                  distances(matrix(1:100, nrow = 50)[1:20, ])))
-  expect_warning(expect_identical(t_coerce_printable_distances(t_x = distances(matrix(1:100, nrow = 50), id_variable = 101:150)),
-                                  distances(matrix(1:100, nrow = 50)[1:20, ], id_variable = 101:120)))
-  expect_warning(t_coerce_printable_distances(t_x = distances(matrix(1:100, nrow = 50))),
-                 regexp = "`t_x` contains too many data points, showing the first 20 out of the total 50.")
-  expect_warning(t_coerce_printable_distances(t_x = distances(matrix(1:80, nrow = 40), id_variable = 101:140)),
-                 regexp = "`t_x` contains too many data points, showing the first 20 out of the total 40.")
-})

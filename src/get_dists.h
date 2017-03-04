@@ -27,22 +27,22 @@
 #include <Rinternals.h>
 
 SEXP dist_get_dist_matrix(SEXP R_distances,
-                          SEXP R_point_indices);
+                          SEXP R_indices);
 
-SEXP dist_get_dist_rows(SEXP R_distances,
-                        SEXP R_row_indices,
-                        SEXP R_column_indices);
+SEXP dist_get_dist_columns(SEXP R_distances,
+                           SEXP R_column_indices,
+                           SEXP R_row_indices);
 
 bool idist_get_dist_matrix(SEXP R_distances,
-                           size_t len_point_indices,
-                           const int point_indices[],
+                           size_t len_indices,
+                           const int indices[],
                            double output_dists[]);
 
-bool idist_get_dist_rows(SEXP R_distances,
-                         size_t len_row_indices,
-                         const int row_indices[],
-                         size_t len_column_indices,
-                         const int column_indices[],
-                         double output_dists[]);
+bool idist_get_dist_columns(SEXP R_distances,
+                            size_t len_column_indices,
+                            const int column_indices[],
+                            size_t len_row_indices,
+                            const int row_indices[],
+                            double output_dists[]);
 
 #endif // ifndef DIST_GET_DISTS_HG

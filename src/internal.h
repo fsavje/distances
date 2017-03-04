@@ -21,6 +21,20 @@
 #ifndef DIST_INTERNAL_HG
 #define DIST_INTERNAL_HG
 
+#include <R.h>
+#include <Rinternals.h>
+
+#define translate_R_index_vector(R_indices, upper_bound) (translate_R_index_vector__(R_indices, upper_bound, "Out of bounds: `" #R_indices "`.", __FILE__, __LINE__))
+
+SEXP get_labels(SEXP R_distances,
+                SEXP R_indices);
+
+SEXP translate_R_index_vector__(SEXP R_indices,
+                                int upper_bound,
+                                const char* msg,
+                                const char* file,
+                                int line);
+
 static inline double idist_get_sq_dist(const double* const raw_data_matrix,
                                        const int num_dimensions,
                                        const int index1,

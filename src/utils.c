@@ -20,6 +20,7 @@
 
 #include "utils.h"
 #include <stdbool.h>
+#include <string.h>
 #include <R.h>
 #include <Rinternals.h>
 #include "error.h"
@@ -40,7 +41,21 @@ SEXP dist_num_data_points(const SEXP R_distances)
 
 bool idist_check_distance_object(const SEXP R_distances)
 {
-	return (isMatrix(R_distances) && isReal(R_distances));
+	SEXP R_class = getAttrib(R_distances, R_ClassSymbol);
+	SEXP R_ids = getAttrib(R_distances, install("ids"));
+	SEXP R_normalization = getAttrib(R_distances, install("normalization"));
+	SEXP R_weights = getAttrib(R_distances, install("weights"));
+
+	return isString(R_class) &&
+		(strcmp(CHAR(asChar(R_class)), "distances") == 0) &&
+		isMatrix(R_distances) &&
+		isReal(R_distances) &&
+		(isNull(R_ids) ||
+			(isString(R_ids) && ((int) xlength(R_ids) == INTEGER(getAttrib(R_distances, R_DimSymbol))[1]))) &&
+		isMatrix(R_normalization) &&
+		isReal(R_normalization) &&
+		isMatrix(R_weights) &&
+		isReal(R_weights);
 }
 
 

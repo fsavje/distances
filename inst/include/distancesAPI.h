@@ -27,6 +27,9 @@
 extern "C" {
 #endif
 
+/* =============================================================================
+ * The API is not stable. Expect changes!
+ * ========================================================================== */
 
 static SEXP dist_check_distance_object(SEXP R_distances)
 {
@@ -49,25 +52,25 @@ static SEXP dist_num_data_points(SEXP R_distances)
 
 
 static SEXP dist_get_dist_matrix(SEXP R_distances,
-                                 SEXP R_point_indices)
+                                 SEXP R_indices)
 {
 	static SEXP(*func)(SEXP, SEXP) = NULL;
 	if (func == NULL) {
 		func = (SEXP(*)(SEXP, SEXP)) R_GetCCallable("distances", "dist_get_dist_matrix");
 	}
-	return func(R_distances, R_point_indices);
+	return func(R_distances, R_indices);
 }
 
 
-static SEXP dist_get_dist_rows(SEXP R_distances,
-                               SEXP R_row_indices,
-                               SEXP R_column_indices)
+static SEXP dist_get_dist_columns(SEXP R_distances,
+                                  SEXP R_column_indices,
+                                  SEXP R_row_indices)
 {
 	static SEXP(*func)(SEXP, SEXP, SEXP) = NULL;
 	if (func == NULL) {
-		func = (SEXP(*)(SEXP, SEXP, SEXP)) R_GetCCallable("distances", "dist_get_dist_rows");
+		func = (SEXP(*)(SEXP, SEXP, SEXP)) R_GetCCallable("distances", "dist_get_dist_columns");
 	}
-	return func(R_distances, R_row_indices, R_column_indices);
+	return func(R_distances, R_column_indices, R_row_indices);
 }
 
 

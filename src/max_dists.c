@@ -51,10 +51,13 @@ SEXP dist_max_distance_search(const SEXP R_distances,
 
 	const int num_data_points = INTEGER(getAttrib(R_distances, R_DimSymbol))[1];
 
-	const size_t len_query_indices = isInteger(R_query_indices) ? (size_t) xlength(R_query_indices) : (size_t) num_data_points;
-	const int* const query_indices = isInteger(R_query_indices) ? INTEGER(R_query_indices) : NULL;
-	const size_t len_search_indices = isInteger(R_search_indices) ? (size_t) xlength(R_search_indices) : (size_t) num_data_points;
-	const int* const search_indices = isInteger(R_search_indices) ? INTEGER(R_search_indices) : NULL;
+	SEXP R_query_indices_local = PROTECT(translate_R_index_vector(R_query_indices, num_data_points));
+	const size_t len_query_indices = isInteger(R_query_indices_local) ? (size_t) xlength(R_query_indices_local) : (size_t) num_data_points;
+	const int* const query_indices = isInteger(R_query_indices_local) ? INTEGER(R_query_indices_local) : NULL;
+
+	SEXP R_search_indices_local = PROTECT(translate_R_index_vector(R_search_indices, num_data_points));
+	const size_t len_search_indices = isInteger(R_search_indices_local) ? (size_t) xlength(R_search_indices_local) : (size_t) num_data_points;
+	const int* const search_indices = isInteger(R_search_indices_local) ? INTEGER(R_search_indices_local) : NULL;
 
 	idist_MaxSearch* max_dist_object;
 	if (!idist_init_max_distance_search(R_distances,
@@ -82,17 +85,15 @@ SEXP dist_max_distance_search(const SEXP R_distances,
 			idist_error("`idist_close_max_distance_search` failed.");
 	}
 
-	const SEXP R_output = PROTECT(allocVector(VECSXP, 2));
-	SET_VECTOR_ELT(R_output, 0, R_out_max_indices);
-	SET_VECTOR_ELT(R_output, 1, R_out_max_dists);
+	const int* const write_stop = out_max_indices + len_query_indices;
+	for (int* write = out_max_indices; write != write_stop; ++write) {
+		++(*write);
+	}
 
-	const SEXP R_output_names = PROTECT(allocVector(STRSXP, 2));
-	SET_STRING_ELT(R_output_names, 0, mkChar("indices"));
-	SET_STRING_ELT(R_output_names, 1, mkChar("dists"));
-	setAttrib(R_output, R_NamesSymbol, R_output_names);
+	setAttrib(R_out_max_indices, R_NamesSymbol, get_labels(R_distances, R_query_indices));
 
 	UNPROTECT(4);
-	return R_output;
+	return R_out_max_indices;
 }
 
 

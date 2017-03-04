@@ -8,19 +8,24 @@ nearest_neighbor_search(distances, k, query_indices = NULL,
   search_indices = NULL, radius = NULL)
 }
 \arguments{
-\item{distances}{...}
+\item{distances}{A \code{\link{distances}} object.}
 
-\item{k}{...}
+\item{k}{The number of neighbors to search for.}
 
-\item{query_indices}{...}
+\item{query_indices}{An integer vector with point indices to query. If \code{NULL},
+all data points in \code{distances} are queried.}
 
-\item{search_indices}{...}
+\item{search_indices}{An integer vector with point indices to search among. If \code{NULL},
+all data points in \code{distances} are searched over.}
 
-\item{radius}{...}
+\item{radius}{Restrict the search to a fixed radius around each query. If fewer than \code{k}
+search points exist within this radius, no neighbors are reported (indicated by \code{NA}).}
 }
 \value{
-...
+A matrix with point indices for the nearest neighbors. Columns in this matrix indicate
+        queries, and rows are ordered by distances from the query.
 }
 \description{
-Nearest neighbor search
+\code{nearest_neighbor_search} searches for the k nearest neighbors of a set of
+query points.
 }

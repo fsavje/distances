@@ -22,9 +22,10 @@
 #' Constructor for distance metric objects.
 #'
 #' \code{distances} constructs a distance metric for a set of points. Currently,
-#' it focuses on Euclidean distances in a (transformed) Euclidean space. The function
-#' optionally normalize and weights the inputted data so to achieve, e.g., Mahalanobis
-#' distances or normalized Euclidean distances.
+#' it only creates Euclidean distances. It can, however, create distances in any
+#' linear projection of Euclidean space. In other words, Mahalanobis
+#' distances or normalized Euclidean distances are both possible. It is also possible
+#' to give each dimension of the space different weights.
 #'
 #' Let \eqn{x} and \eqn{y} be two data points in \code{data} described by two vectors. \code{distances}
 #' uses the following metric to derive the distance between \eqn{x} and \eqn{y}:
@@ -34,11 +35,11 @@
 #' where \eqn{N^{-0.5}}{N^-0.5} is the Cholesky decomposition (lower triangular) of the inverse of the
 #' matrix speficied by \code{normalize}, and \eqn{W} is matrix speficied by \code{weights}.
 #'
-#' When \code{normalize} is \code{var(data)} (i.e., using the \code{"mahalanobize"} option), this
-#' derives the (weighted) Mahalanobis distances. When \code{normalize} is \code{diag(var(data))} (i.e., using
-#' the \code{"studentize"} option), this will divide each column by its variance leading to (weighted) normalized
-#' Euclidean distances. If \code{normalize} is the identity matrix (i.e., using the \code{"none"} or \code{NULL} option), this
-#' derives the (weighted) Euclidean distances.
+#' When \code{normalize} is \code{var(data)} (i.e., using the \code{"mahalanobize"} option), the function gives
+#' (weighted) Mahalanobis distances. When \code{normalize} is \code{diag(var(data))} (i.e., using
+#' the \code{"studentize"} option), the function divides each column by its variance leading to (weighted) normalized
+#' Euclidean distances. If \code{normalize} is the identity matrix (i.e., using the \code{"none"} or \code{NULL} option), the function
+#' derives ordinary Euclidean distances.
 #'
 #' @param data a matrix or data frame containing the data points between distances should be derived.
 #' @param id_variable optional IDs of the data points.
@@ -66,7 +67,7 @@
 #'                with the supplied vector as its diagonal will be used. The matrix used for weighting must be
 #'                positive-semidefinite.
 #'
-#' @return \code{distances} returns a distance object.
+#' @return Returns a \code{distances} object.
 #'
 #' @examples
 #' my_data_points <- data.frame(x = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
@@ -189,32 +190,4 @@ distances <- function(data,
             normalization = normalize,
             weights = weights,
             class = c("distances"))
-}
-
-
-#' Check \code{distances} object
-#'
-#' \code{is.distances} checks whether the provided object
-#' is a valid instance of the \code{distances} class.
-#'
-#' @param obj  object to check.
-#'
-#' @return Returns \code{TRUE} if \code{obj} is a valid
-#'         \code{distances} object, otherwise \code{FALSE}.
-#'
-#' @export
-is.distances <- function(obj) {
-  c_is.distances(obj) &&
-    inherits(obj, "distances") &&
-    is.matrix(obj) &&
-    is.numeric(obj) &&
-    (is.null(attr(obj, "ids", exact = TRUE)) ||
-       (is.character(attr(obj, "ids", exact = TRUE)) &&
-          (length(attr(obj, "ids", exact = TRUE)) == ncol(obj)))) &&
-    !is.null(attr(obj, "normalization", exact = TRUE)) &&
-    is.matrix(attr(obj, "normalization", exact = TRUE)) &&
-    is.numeric(attr(obj, "normalization", exact = TRUE)) &&
-    !is.null(attr(obj, "weights", exact = TRUE)) &&
-    is.matrix(attr(obj, "weights", exact = TRUE)) &&
-    is.numeric(attr(obj, "weights", exact = TRUE))
 }

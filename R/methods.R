@@ -19,27 +19,39 @@
 # ==============================================================================
 
 
+#' Check \code{distances} object
+#'
+#' \code{is.distances} checks whether the provided object
+#' is a valid instance of the \code{\link{distances}} class.
+#'
+#' @param x  object to check.
+#'
+#' @return Returns \code{TRUE} if \code{x} is a valid
+#'         \code{distances} object, otherwise \code{FALSE}.
+#'
+#' @useDynLib distances dist_check_distance_object
+#' @export
+is.distances <- function(x) {
+  .Call(dist_check_distance_object,
+        x)
+}
+
+
+#' @useDynLib distances dist_num_data_points
 #' @export
 length.distances <- function(x) {
-  ensure_distances(x)
-  c_num_data_points(x)
+  .Call(dist_num_data_points,
+        x)
 }
+
 
 #' @importFrom stats as.dist
 #' @export
 as.dist.distances <- function(m, diag = FALSE, upper = FALSE) {
-  ensure_distances(m)
   ans <- distance_matrix(m)
-  attributes(ans) <- NULL
-  if (!is.null(attr(m, "ids", exact = TRUE))) {
-    attr(ans, "Labels") <- attr(m, "ids", exact = TRUE)
-  }
-  attr(ans, "Size") <- length(m)
-  attr(ans, "Diag") <- diag
-  attr(ans, "Upper") <- upper
-  attr(ans, "method") <- "distances package"
+  if (!missing(diag)) attr(ans, "Diag") <- diag
+  if (!missing(upper)) attr(ans, "Upper") <- upper
   attr(ans, "call") <- match.call()
-  class(ans) <- "dist"
   ans
 }
 
@@ -52,6 +64,10 @@ as.matrix.distances <- function(x, ...) {
 
 #' @export
 print.distances <- function(x, ...) {
-  x <- coerce_printable_distances(x)
+  ensure_distances(x)
+  if (length(x) > 20L) {
+    warning("`", match.call()$x, "` contains too many data points, showing the first 20 out of the total ", ncol(x), ".")
+    x <- distances(t(x[, 1:20]), id_variable = attr(x, "ids", exact = TRUE)[1:20])
+  }
   print(as.matrix.distances(x))
 }

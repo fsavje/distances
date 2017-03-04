@@ -154,6 +154,32 @@ coerce_distance_data <- function(data,
 }
 
 
+# Coerce `x` to double or null
+coerce_double <- function(x) {
+  if (!is.double(x) && !is.null(x)) {
+    if (is.numeric(x)) {
+      storage.mode(x) <- "double"
+    } else {
+      new_error("`", match.call()$x, "` must be double or NULL.")
+    }
+  }
+  x
+}
+
+
+# Coerce `x` to integer or null
+coerce_integer <- function(x) {
+  if (!is.integer(x) && !is.null(x)) {
+    if (is.numeric(x)) {
+      storage.mode(x) <- "integer"
+    } else {
+      new_error("`", match.call()$x, "` must be integer or NULL.")
+    }
+  }
+  x
+}
+
+
 # Coerce `mat` to symmetric, positive-semidefinite, numeric matrix
 coerce_norm_matrix <- function(mat,
                                num_cov) {
@@ -182,17 +208,4 @@ coerce_norm_matrix <- function(mat,
     new_error("`", match.call()$mat, "` must be positive-semidefinite.")
   }
   mat
-}
-
-
-# Coerce `x` to printable distances object
-coerce_printable_distances <- function(x) {
-  if (!is.distances(x)) {
-    new_error("`", match.call()$x, "` is not a `distances` object.")
-  }
-  if (ncol(x) > 20L) {
-    new_warning("`", match.call()$x, "` contains too many data points, showing the first 20 out of the total ", ncol(x), ".")
-    x <- distances(t(x[, 1:20]), id_variable = attr(x, "ids", exact = TRUE)[1:20])
-  }
-  x
 }

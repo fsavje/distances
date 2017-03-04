@@ -7,15 +7,18 @@
 max_distance_search(distances, query_indices = NULL, search_indices = NULL)
 }
 \arguments{
-\item{distances}{...}
+\item{distances}{A \code{\link{distances}} object.}
 
-\item{query_indices}{...}
+\item{query_indices}{An integer vector with point indices to query. If \code{NULL},
+all data points in \code{distances} are queried.}
 
-\item{search_indices}{...}
+\item{search_indices}{An integer vector with point indices to search among. If \code{NULL},
+all data points in \code{distances} are searched over.}
 }
 \value{
-...
+An integer vector with point indices for the data point furthest from each query.
 }
 \description{
-Max distance search
+\code{max_distance_search} searches for the data point furthest from a set of
+query points.
 }

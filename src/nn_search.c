@@ -25,6 +25,7 @@
 #include <R.h>
 #include <Rinternals.h>
 #include "error.h"
+#include "internal.h"
 #include "utils.h"
 
 
@@ -44,10 +45,13 @@ SEXP dist_nearest_neighbor_search(const SEXP R_distances,
 
 	const uint32_t k = (uint32_t) asInteger(R_k);
 
-	const size_t len_query_indices = isInteger(R_query_indices) ? (size_t) xlength(R_query_indices) : (size_t) num_data_points;
-	const int* const query_indices = isInteger(R_query_indices) ? INTEGER(R_query_indices) : NULL;
-	const size_t len_search_indices = isInteger(R_search_indices) ? (size_t) xlength(R_search_indices) : (size_t) num_data_points;
-	const int* const search_indices = isInteger(R_search_indices) ? INTEGER(R_search_indices) : NULL;
+	SEXP R_query_indices_local = PROTECT(translate_R_index_vector(R_query_indices, num_data_points));
+	const size_t len_query_indices = isInteger(R_query_indices_local) ? (size_t) xlength(R_query_indices_local) : (size_t) num_data_points;
+	const int* const query_indices = isInteger(R_query_indices_local) ? INTEGER(R_query_indices_local) : NULL;
+
+	SEXP R_search_indices_local = PROTECT(translate_R_index_vector(R_search_indices, num_data_points));
+	const size_t len_search_indices = isInteger(R_search_indices_local) ? (size_t) xlength(R_search_indices_local) : (size_t) num_data_points;
+	const int* const search_indices = isInteger(R_search_indices_local) ? INTEGER(R_search_indices_local) : NULL;
 
 	const bool radius_search = isReal(R_radius);
 	const double radius = isReal(R_radius) ? asReal(R_radius) : 0.0;
@@ -63,7 +67,7 @@ SEXP dist_nearest_neighbor_search(const SEXP R_distances,
 	size_t out_num_ok_queries;
 	SEXP R_out_query_indices = PROTECT(allocVector(INTSXP, (R_xlen_t) len_query_indices));
 	int* const out_query_indices = INTEGER(R_out_query_indices);
-	SEXP R_out_nn_indices = PROTECT(allocVector(INTSXP, (R_xlen_t) (k * len_query_indices)));
+	SEXP R_out_nn_indices = PROTECT(allocMatrix(INTSXP, k, len_query_indices));
 	int* const out_nn_indices = INTEGER(R_out_nn_indices);
 
 	if (!idist_nearest_neighbor_search(nn_search_object,
@@ -80,20 +84,45 @@ SEXP dist_nearest_neighbor_search(const SEXP R_distances,
 	}
 
 	if (!idist_close_nearest_neighbor_search(&nn_search_object)) {
-			idist_error("`idist_close_nearest_neighbor_search` failed.");
+		idist_error("`idist_close_nearest_neighbor_search` failed.");
 	}
 
-	const SEXP R_output = PROTECT(allocVector(VECSXP, 3));
-	SET_VECTOR_ELT(R_output, 0, ScalarInteger((int) out_num_ok_queries));
-	SET_VECTOR_ELT(R_output, 1, R_out_query_indices);
-	SET_VECTOR_ELT(R_output, 2, R_out_nn_indices);
+	if (out_num_ok_queries < len_query_indices) {
+		SEXP R_tmp_nn_indices = R_out_nn_indices;
+		R_out_nn_indices = PROTECT(allocMatrix(INTSXP, k, len_query_indices));
+		const int* ok_query = out_query_indices;
+		const int* const ok_query_stop = ok_query + out_num_ok_queries;
+		const int* read = INTEGER(R_tmp_nn_indices);
+		int* write = INTEGER(R_out_nn_indices);
 
-	const SEXP R_output_names = PROTECT(allocVector(STRSXP, 3));
-	SET_STRING_ELT(R_output_names, 0, mkChar("num_ok_queries"));
-	SET_STRING_ELT(R_output_names, 1, mkChar("out_query_indices"));
-	SET_STRING_ELT(R_output_names, 2, mkChar("out_nn_indices"));
-	setAttrib(R_output, R_NamesSymbol, R_output_names);
+		for (size_t q = 0; q < len_query_indices; ++q) {
+			const int query = (query_indices == NULL) ? (int) q : query_indices[q];
+			const int* const write_stop = write + k;
+			if ((ok_query != ok_query_stop) && (*ok_query == query)) {
+				for (; write != write_stop; ++read, ++write) {
+					*write = *read + 1;
+				}
+				ok_query++;
+			} else {
+				for (; write != write_stop; ++write) {
+					*write = NA_INTEGER;
+				}
+			}
+		}
+	} else {
+		PROTECT(R_out_nn_indices);
+		int* write = INTEGER(R_out_nn_indices);
+		const int* const write_stop = write + k * len_query_indices;
+		for (; write != write_stop; ++write) {
+			*write = *write + 1;
+		}
+	}
 
-	UNPROTECT(4);
-	return R_output;
+	SEXP dimnames = PROTECT(allocVector(VECSXP, 2));
+	SET_VECTOR_ELT(dimnames, 0, R_NilValue);
+	SET_VECTOR_ELT(dimnames, 1, get_labels(R_distances, R_query_indices));
+	setAttrib(R_out_nn_indices, R_DimNamesSymbol, dimnames);
+
+	UNPROTECT(6);
+	return R_out_nn_indices;
 }

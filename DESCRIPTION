@@ -1,10 +1,10 @@
 Package: distances
 Type: Package
-Title: Distance metric tools for R
+Title: Tools for distances and metrics
 Version: 0.0.1
 Date: 2017-03-01
 Authors@R: c(person("Fredrik", "Savje", email = "fredrik.savje@berkeley.edu", role = c("aut", "cre")))
-Description: Distance metric tools for R.
+Description: Provides tools for constructing, manipulating and using distance metrics.
 Depends:
     R (>= 3.2.3)
 Imports: stats

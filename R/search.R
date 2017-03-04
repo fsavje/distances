@@ -18,17 +18,47 @@
 # along with this program. If not, see http://www.gnu.org/licenses/
 # ==============================================================================
 
+#' Max distance search
+#'
+#' \code{max_distance_search} searches for the data point furthest from a set of
+#' query points.
+#'
+#' @param distances A \code{\link{distances}} object.
+#' @param query_indices An integer vector with point indices to query. If \code{NULL},
+#'                      all data points in \code{distances} are queried.
+#' @param search_indices An integer vector with point indices to search among. If \code{NULL},
+#'                       all data points in \code{distances} are searched over.
+#'
+#' @return An integer vector with point indices for the data point furthest from each query.
+#'
+#' @useDynLib distances dist_max_distance_search
+#' @export
+max_distance_search <- function(distances,
+                                query_indices = NULL,
+                                search_indices = NULL) {
+  .Call(dist_max_distance_search,
+        distances,
+        coerce_integer(query_indices),
+        coerce_integer(search_indices))
+}
+
+
 #' Nearest neighbor search
 #'
-#' Nearest neighbor search
+#' \code{nearest_neighbor_search} searches for the k nearest neighbors of a set of
+#' query points.
 #'
-#' @param distances ...
-#' @param k ...
-#' @param query_indices ...
-#' @param search_indices ...
-#' @param radius ...
+#' @param distances A \code{\link{distances}} object.
+#' @param k The number of neighbors to search for.
+#' @param query_indices An integer vector with point indices to query. If \code{NULL},
+#'                      all data points in \code{distances} are queried.
+#' @param search_indices An integer vector with point indices to search among. If \code{NULL},
+#'                       all data points in \code{distances} are searched over.
+#' @param radius Restrict the search to a fixed radius around each query. If fewer than \code{k}
+#'               search points exist within this radius, no neighbors are reported (indicated by \code{NA}).
 #'
-#' @return ...
+#' @return A matrix with point indices for the nearest neighbors. Columns in this matrix indicate
+#'         queries, and rows are ordered by distances from the query.
 #'
 #' @useDynLib distances dist_nearest_neighbor_search
 #' @export
@@ -39,30 +69,8 @@ nearest_neighbor_search <- function(distances,
                                     radius = NULL) {
   .Call(dist_nearest_neighbor_search,
         distances,
-        k,
-        query_indices,
-        search_indices,
-        radius)
-}
-
-
-#' Max distance search
-#'
-#' Max distance search
-#'
-#' @param distances ...
-#' @param query_indices ...
-#' @param search_indices ...
-#'
-#' @return ...
-#'
-#' @useDynLib distances dist_max_distance_search
-#' @export
-max_distance_search <- function(distances,
-                                query_indices = NULL,
-                                search_indices = NULL) {
-  .Call(dist_max_distance_search,
-        distances,
-        query_indices,
-        search_indices)
+        coerce_integer(k),
+        coerce_integer(query_indices),
+        coerce_integer(search_indices),
+        coerce_double(radius))
 }

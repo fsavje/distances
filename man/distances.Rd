@@ -39,13 +39,14 @@ with the supplied vector as its diagonal will be used. The matrix used for weigh
 positive-semidefinite.}
 }
 \value{
-\code{distances} returns a distance object.
+Returns a \code{distances} object.
 }
 \description{
 \code{distances} constructs a distance metric for a set of points. Currently,
-it focuses on Euclidean distances in a (transformed) Euclidean space. The function
-optionally normalize and weights the inputted data so to achieve, e.g., Mahalanobis
-distances or normalized Euclidean distances.
+it only creates Euclidean distances. It can, however, create distances in any
+linear projection of Euclidean space. In other words, Mahalanobis
+distances or normalized Euclidean distances are both possible. It is also possible
+to give each dimension of the space different weights.
 }
 \details{
 Let \eqn{x} and \eqn{y} be two data points in \code{data} described by two vectors. \code{distances}
@@ -56,11 +57,11 @@ uses the following metric to derive the distance between \eqn{x} and \eqn{y}:
 where \eqn{N^{-0.5}}{N^-0.5} is the Cholesky decomposition (lower triangular) of the inverse of the
 matrix speficied by \code{normalize}, and \eqn{W} is matrix speficied by \code{weights}.
 
-When \code{normalize} is \code{var(data)} (i.e., using the \code{"mahalanobize"} option), this
-derives the (weighted) Mahalanobis distances. When \code{normalize} is \code{diag(var(data))} (i.e., using
-the \code{"studentize"} option), this will divide each column by its variance leading to (weighted) normalized
-Euclidean distances. If \code{normalize} is the identity matrix (i.e., using the \code{"none"} or \code{NULL} option), this
-derives the (weighted) Euclidean distances.
+When \code{normalize} is \code{var(data)} (i.e., using the \code{"mahalanobize"} option), the function gives
+(weighted) Mahalanobis distances. When \code{normalize} is \code{diag(var(data))} (i.e., using
+the \code{"studentize"} option), the function divides each column by its variance leading to (weighted) normalized
+Euclidean distances. If \code{normalize} is the identity matrix (i.e., using the \code{"none"} or \code{NULL} option), the function
+derives ordinary Euclidean distances.
 }
 \examples{
 my_data_points <- data.frame(x = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
