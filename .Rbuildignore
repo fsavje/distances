@@ -4,4 +4,5 @@
 ^appveyor\.yml$
 ^codecov\.yml$
 ^cran-comments\.md$
+^LICENSE$
 ^src/ZZZupdate_ann\.sh$

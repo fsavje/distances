@@ -12,7 +12,7 @@ Imports:
 Suggests:
     testthat
 NeedsCompilation: yes
-License: GPL (>= 3) + file LICENSE
+License: GPL (>= 3)
 LicenseNote: The distances packages includes the ANN library
     (distributed under the LGPLv2.1 license).
 URL: https://github.com/fsavje/distances
