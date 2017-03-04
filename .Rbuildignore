@@ -3,4 +3,5 @@
 ^\.travis\.yml$
 ^appveyor\.yml$
 ^codecov\.yml$
+^cran-comments\.md$
 ^src/ZZZupdate_ann\.sh$
