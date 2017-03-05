@@ -1,5 +1,5 @@
 # ==============================================================================
-# distances -- Distance metric tools for R
+# distances -- R package with tools for distance metrics
 # https://github.com/fsavje/distances
 #
 # Copyright (C) 2017  Fredrik Savje -- http://fredriksavje.com
@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see http://www.gnu.org/licenses/
 # ==============================================================================
+
 
 #' Max distance search
 #'

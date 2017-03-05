@@ -1,5 +1,5 @@
 # ==============================================================================
-# distances -- Distance metric tools for R
+# distances -- R package with tools for distance metrics
 # https://github.com/fsavje/distances
 #
 # Copyright (C) 2017  Fredrik Savje -- http://fredriksavje.com
@@ -19,7 +19,7 @@
 # ==============================================================================
 
 
-#' Constructor for distance metric objects.
+#' Constructor for distance metric objects
 #'
 #' \code{distances} constructs a distance metric for a set of points. Currently,
 #' it only creates Euclidean distances. It can, however, create distances in any

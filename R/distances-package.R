@@ -1,5 +1,5 @@
 # ==============================================================================
-# distances -- Distance metric tools for R
+# distances -- R package with tools for distance metrics
 # https://github.com/fsavje/distances
 #
 # Copyright (C) 2017  Fredrik Savje -- http://fredriksavje.com
@@ -19,12 +19,12 @@
 # ==============================================================================
 
 
-#' distances: Tools for distances and metrics
+#' distances: Tools for Distance Metrics
 #'
 #' The \code{distances} package provides tools for constructing, manipulating
 #' and using distance metrics. It does not calculate the complete distance matrix
-#' when distance metric objects are created (see \code{\link{distances}}). This
-#' lowers memory use and can increase speed.
+#' when a distance metric object is created (see \code{\link{distances}}). This
+#' saves memory and can increase speed.
 #'
 #' See the package's website for more information:
 #' \url{https://github.com/fsavje/distances}.

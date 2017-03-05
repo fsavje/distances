@@ -3,12 +3,12 @@
 \docType{package}
 \name{distances-package}
 \alias{distances-package}
-\title{distances: Tools for distances and metrics}
+\title{distances: Tools for Distance Metrics}
 \description{
 The \code{distances} package provides tools for constructing, manipulating
 and using distance metrics. It does not calculate the complete distance matrix
-when distance metric objects are created (see \code{\link{distances}}). This
-lowers memory use and can increase speed.
+when a distance metric object is created (see \code{\link{distances}}). This
+saves memory and can increase speed.
 }
 \details{
 See the package's website for more information:

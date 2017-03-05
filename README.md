@@ -3,8 +3,9 @@
 [![Build Status](https://travis-ci.org/fsavje/distances.svg?branch=master)](https://travis-ci.org/fsavje/distances)
 [![Build status](https://ci.appveyor.com/api/projects/status/x6eqojpbbfk6c0fm/branch/master?svg=true)](https://ci.appveyor.com/project/fsavje/distances/branch/master)
 [![codecov](https://codecov.io/gh/fsavje/distances/branch/master/graph/badge.svg)](https://codecov.io/gh/fsavje/distances)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/distances)](https://cran.r-project.org/package=distances)
 
-The `distances` package provides tools for constructing, manipulating and using distance metrics. It does not calculate the complete distance matrix when distance metric objects are created. This lowers memory use and can increase speed.
+The `distances` package provides tools for constructing, manipulating and using distance metrics in R. It does not calculate the complete distance matrix when a distance metric object is created. This saves memory and can increase speed.
 
 ## How to install `distances`
 

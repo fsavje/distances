@@ -1,13 +1,3 @@
-# This is a new package not currently on CRAN
-
-
-## Resubmission
-
-This is a resubmission. Compared to the previously submitted version, I have:
-
-  * Removed the file `LICENSE`, as instructed.
-
-
 ## Test environments
 
   * x86_64-apple-darwin16.1.0 (local machine)
@@ -32,12 +22,7 @@ This is a resubmission. Compared to the previously submitted version, I have:
 
   * No WARNINGs. 
 
-  * 1 NOTE:
-
-    > * checking CRAN incoming feasibility ... NOTE
-    > Maintainer: 'Fredrik Savje <fredrik.savje@berkeley.edu>'
-    >
-    > New submission
+  * No NOTEs.
 
 
 ## Downstream dependencies
