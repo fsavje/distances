@@ -22,9 +22,11 @@
 #' distances: Tools for Distance Metrics
 #'
 #' The \code{distances} package provides tools for constructing, manipulating
-#' and using distance metrics. It does not calculate the complete distance matrix
-#' when a distance metric object is created (see \code{\link{distances}}). This
-#' saves memory and can increase speed.
+#' and using distance metrics in R. It calculates distances only as needed
+#' (unlike the standard \code{\link[stats]{dist}} function which derives the
+#' complete distance matrix when called). This saves memory and can increase
+#' speed. It also includes functions for fast nearest and farthest neighbor
+#' searching.
 #'
 #' See the package's website for more information:
 #' \url{https://github.com/fsavje/distances}.

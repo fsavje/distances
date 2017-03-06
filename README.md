@@ -5,10 +5,10 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/x6eqojpbbfk6c0fm/branch/master?svg=true)](https://ci.appveyor.com/project/fsavje/distances/branch/master)
 [![codecov](https://codecov.io/gh/fsavje/distances/branch/master/graph/badge.svg)](https://codecov.io/gh/fsavje/distances)
 
-The `distances` package provides tools for constructing, manipulating and using distance metrics in R. It does not calculate the complete distance matrix when a distance metric object is created. This saves memory and can increase speed.
+The `distances` package provides tools for constructing, manipulating and using distance metrics in R. It calculates distances only as needed (unlike the standard `dist` function which derives the complete distance matrix when called). This saves memory and can increase speed. It also includes functions for fast nearest and farthest neighbor searching.
 
 
-## How to install 
+## How to install
 
 `distances` is on CRAN and can be installed simply by running:
 
