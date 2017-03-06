@@ -25,8 +25,8 @@
 #' and using distance metrics in R. It calculates distances only as needed
 #' (unlike the standard \code{\link[stats]{dist}} function which derives the
 #' complete distance matrix when called). This saves memory and can increase
-#' speed. It also includes functions for fast nearest and farthest neighbor
-#' searching.
+#' speed. The package also includes functions for fast nearest and farthest
+#' neighbor searching.
 #'
 #' See the package's website for more information:
 #' \url{https://github.com/fsavje/distances}.
