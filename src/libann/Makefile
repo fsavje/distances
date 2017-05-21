@@ -2,32 +2,32 @@ include $(MAKECONF)
 
 LIBOUT = lib/libann.a
 
-LIBOBJ = \
-	ANN.o \
-	brute.o \
-	kd_tree.o \
-	kd_util.o \
-	kd_split.o \
-	kd_dump.o \
-	kd_search.o \
-	kd_pr_search.o \
-	kd_fix_rad_search.o \
-	bd_tree.o \
-	bd_search.o \
-	bd_pr_search.o \
-	bd_fix_rad_search.o \
-	perf.o
+LIBOBJS = \
+	src/ANN.o \
+	src/brute.o \
+	src/kd_tree.o \
+	src/kd_util.o \
+	src/kd_split.o \
+	src/kd_dump.o \
+	src/kd_search.o \
+	src/kd_pr_search.o \
+	src/kd_fix_rad_search.o \
+	src/bd_tree.o \
+	src/bd_search.o \
+	src/bd_pr_search.o \
+	src/bd_fix_rad_search.o \
+	src/perf.o
 
-.PHONY : all clean
+.PHONY: all clean
 
-all : $(LIBOUT)
+all: $(LIBOUT)
 
-$(LIBOUT) : $(addprefix src/,$(LIBOBJ))
+$(LIBOUT): $(LIBOBJS)
 	mkdir -p lib
 	$(AR) -rcs $(LIBOUT) $^
 
-%.o : %.cpp
+%.o: %.cpp
 	$(CXX) -c $(ALL_CPPFLAGS) $(ALL_CXXFLAGS) -DNDEBUG -Iinclude -Wno-unused-const-variable $< -o $@
 
-clean :
+clean:
 	$(RM) -rf lib src/*.o
