@@ -1,3 +1,6 @@
+# distances devel
+
+
 # distances 0.1.1
 
   * Make C-code POSIX compliant so package builds on Solaris.
