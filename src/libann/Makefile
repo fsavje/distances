@@ -27,7 +27,7 @@ $(LIBOUT): $(LIBOBJS)
 	$(AR) -rcs $(LIBOUT) $^
 
 %.o: %.cpp
-	$(CXX) -c $(ALL_CPPFLAGS) $(ALL_CXXFLAGS) -DNDEBUG -Iinclude -Wno-unused-const-variable $< -o $@
+	$(CXX) -c $(ALL_CPPFLAGS) $(ALL_CXXFLAGS) -DNDEBUG -Iinclude $< -o $@
 
 clean:
 	$(RM) -rf lib src/*.o

@@ -1,3 +1,9 @@
+## Submit comment
+
+	Please excuse submitting two updates so close together. This update
+	fixes compilation issues on Solaris found by Prof Ripley.
+
+
 ## Test environments
 
   * x86_64-apple-darwin15.6.0 (local machine)

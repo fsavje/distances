@@ -21,6 +21,12 @@ ed -s libann/include/ANN/ANNperf.h <<EOF
 q
 EOF
 
+ed -s libann/src/kd_dump.cpp <<EOF
+,s/const double	EPSILON			= 1E-5;/\/\/const double	EPSILON			= 1E-5;/g
+,w
+q
+EOF
+
 cat <<EOF > libann/Makefile
 include \$(MAKECONF)
 
@@ -51,7 +57,7 @@ all: \$(LIBOUT)
 	\$(AR) -rcs \$(LIBOUT) \$^
 
 %.o: %.cpp
-	\$(CXX) -c \$(ALL_CPPFLAGS) \$(ALL_CXXFLAGS) -DNDEBUG -Iinclude -Wno-unused-const-variable \$< -o \$@
+	\$(CXX) -c \$(ALL_CPPFLAGS) \$(ALL_CXXFLAGS) -DNDEBUG -Iinclude \$< -o \$@
 
 clean:
 	\$(RM) -rf lib src/*.o

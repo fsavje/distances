@@ -1,6 +1,6 @@
 MAKECONF = $(R_HOME)/etc$(R_ARCH)/Makeconf
 
-PKG_LIBS = libann/lib/libann.a -lstdc++
+PKG_LIBS = libann/lib/libann.a
 
 .PHONY: clean
 
