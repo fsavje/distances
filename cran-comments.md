@@ -1,7 +1,6 @@
 ## Submit comment
 
-	Please excuse submitting two updates so close together. This update
-	fixes compilation issues on Solaris found by Prof Ripley.
+Please excuse submitting two updates so close together. This update fixes compilation issues on Solaris found by Prof Ripley.
 
 
 ## Test environments
@@ -28,7 +27,9 @@
 
   * No WARNINGs. 
 
-  * No NOTEs.
+  * 1 NOTE:
+
+     > Days since last update: 2
 
 
 ## Downstream dependencies
