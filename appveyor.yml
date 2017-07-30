@@ -14,11 +14,11 @@ install:
 
 environment:
   global:
-    R_ARCH: x64
-    PKGTYPE: "source"
     WARNINGS_ARE_ERRORS: 1
+    PKGTYPE: "source"
     USE_RTOOLS: true
     RTOOLS_VERSION: 34
+    R_ARCH: x64
 
   matrix:
   - R_VERSION: oldrel
@@ -26,25 +26,23 @@ environment:
     RTOOLS_VERSION: 33
 
   - R_VERSION: oldrel
-    R_ARCH: i386
     PKGTYPE: "binary"
     RTOOLS_VERSION: 33
+    R_ARCH: i386
 
   - R_VERSION: release
     PKGTYPE: "binary"
 
   - R_VERSION: release
-    R_ARCH: i386
     PKGTYPE: "binary"
+    R_ARCH: i386
 
   - R_VERSION: devel
     PKGTYPE: "binary"
 
   - R_VERSION: devel
-    R_ARCH: i386
     PKGTYPE: "binary"
-
-#  - R_VERSION: 3.4.1
+    R_ARCH: i386
 
   - R_VERSION: 3.4.0
 
