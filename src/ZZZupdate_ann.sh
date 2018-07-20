@@ -30,6 +30,8 @@ EOF
 cat <<EOF > libann/Makefile
 include \$(MAKECONF)
 
+ALL_CXX98FLAGS = \$(R_XTRA_CXXFLAGS) \$(PKG_CXXFLAGS) \$(CXX98PICFLAGS) \$(SHLIB_CXXFLAGS) \$(CXX98FLAGS)
+
 LIBOUT = lib/libann.a
 
 LIBOBJS = \\
@@ -57,7 +59,7 @@ all: \$(LIBOUT)
 	\$(AR) -rcs \$(LIBOUT) \$^
 
 %.o: %.cpp
-	\$(CXX) -c \$(ALL_CPPFLAGS) \$(ALL_CXXFLAGS) -DNDEBUG -Iinclude \$< -o \$@
+	\$(CXX98) -c \$(CXX98STD) \$(ALL_CPPFLAGS) \$(ALL_CXX98FLAGS) -DNDEBUG -Iinclude $< -o \$@
 
 clean:
 	\$(RM) -rf lib src/*.o
