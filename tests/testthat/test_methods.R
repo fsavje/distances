@@ -266,14 +266,14 @@ test_that("`print.distances` prints correctly", {
   expect_warning(
     expect_output(
       print.distances(distances(matrix(as.numeric(1:100), ncol = 2))),
-      "0.000000  1.414214  2.828427", fixed = TRUE
+      "38.98718  29.46184  19.79899", fixed = TRUE
     ),
     regexp = "contains too many data points, showing the first 20 out of the total 50."
   )
   expect_warning(
     expect_output(
       print.distances(distances(matrix(as.numeric(1:100), ncol = 2))),
-      "8.485281  7.071068  5.656854", fixed = TRUE
+      "118.27088 110.05453 101.68579", fixed = TRUE
     ),
     regexp = "contains too many data points, showing the first 20 out of the total 50."
   )
