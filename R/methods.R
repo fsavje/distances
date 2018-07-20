@@ -55,6 +55,22 @@ as.dist.distances <- function(m, diag = FALSE, upper = FALSE) {
 
 
 #' @export
+`[.distances` <- function(x, i, j, drop = TRUE) {
+  if (missing(i) && missing(j)) {
+    ans <- as.matrix.distances(x)
+  } else if (missing(j)) {
+    ans <- t(distance_columns(x, i, NULL))
+  } else if (missing(i)) {
+    ans <- distance_columns(x, j, NULL)
+  } else {
+    ans <- distance_columns(x, j, i)
+  }
+  if (drop) ans <- drop(ans)
+  ans
+}
+
+
+#' @export
 as.matrix.distances <- function(x, ...) {
   as.matrix(as.dist.distances(x))
 }
