@@ -1,4 +1,7 @@
-# distances devel
+# distances 0.1.3
+
+  * Adds extract methods []
+  * Updates maintainer information
 
 
 # distances 0.1.2
