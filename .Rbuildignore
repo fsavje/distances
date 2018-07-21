@@ -5,4 +5,5 @@
 ^codecov\.yml$
 ^cran-comments\.md$
 ^LICENSE$
+^release-checklist\.md$
 ^src/ZZZupdate_ann\.sh$
