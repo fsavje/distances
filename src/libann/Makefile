@@ -1,12 +1,5 @@
 include $(MAKECONF)
 
-ifeq ($(CXX98),)
-CXX98 = $(CXX)
-CXX98FLAGS =  $(CXXFLAGS)
-CXX98PICFLAGS = $(CXXPICFLAGS)
-CXX98STD = -std=gnu++98
-endif
-
 LIBOUT = lib/libann.a
 
 LIBOBJS = \

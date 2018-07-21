@@ -54,23 +54,6 @@ environment:
 
   - R_VERSION: 3.4.0
 
-  - R_VERSION: 3.3.3
-
-  - R_VERSION: 3.3.2
-
-  - R_VERSION: 3.3.1
-
-  - R_VERSION: 3.3.0
-
-  - R_VERSION: 3.2.5
-    RTOOLS_VERSION: 33
-
-  - R_VERSION: 3.2.4
-    RTOOLS_VERSION: 33
-
-  - R_VERSION: 3.2.3
-    RTOOLS_VERSION: 33
-
 
 build_script:
   - travis-tool.sh install_deps
