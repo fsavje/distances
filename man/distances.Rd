@@ -55,7 +55,7 @@ uses the following metric to derive the distance between \eqn{x} and \eqn{y}:
 \deqn{\sqrt{(x - y) N^{-0.5} W (N^{-0.5})' (x - y)}}{\sqrt((x - y) * N^-0.5 * W * (N^-0.5)' * (x - y))}
 
 where \eqn{N^{-0.5}}{N^-0.5} is the Cholesky decomposition (lower triangular) of the inverse of the
-matrix speficied by \code{normalize}, and \eqn{W} is matrix speficied by \code{weights}.
+matrix speficied by \code{normalize}, and \eqn{W} is the matrix speficied by \code{weights}.
 
 When \code{normalize} is \code{var(data)} (i.e., using the \code{"mahalanobize"} option), the function gives
 (weighted) Mahalanobis distances. When \code{normalize} is \code{diag(var(data))} (i.e., using
