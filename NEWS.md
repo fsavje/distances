@@ -1,4 +1,6 @@
-# distances devel
+# distances 0.1.4
+
+* Update R dependency
 
 
 # distances 0.1.3
