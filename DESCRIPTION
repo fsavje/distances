@@ -18,4 +18,4 @@ LicenseNote: The distances packages includes the ANN library
 URL: https://github.com/fsavje/distances
 BugReports: https://github.com/fsavje/distances/issues
 Encoding: UTF-8
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
