@@ -31,15 +31,13 @@
 #'
 #' @export
 is.distances <- function(x) {
-  .Call(dist_check_distance_object,
-        x)
+  .Call(dist_check_distance_object, x)
 }
 
 
 #' @export
 length.distances <- function(x) {
-  .Call(dist_num_data_points,
-        x)
+  .Call(dist_num_data_points, x)
 }
 
 
