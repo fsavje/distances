@@ -57,9 +57,10 @@ SEXP dist_get_dist_matrix(const SEXP R_distances,
 	SEXP R_ids = getAttrib(R_distances, install("ids"));
 	if (isInteger(R_indices) || isString(R_ids)) {
 		setAttrib(R_output_dists, install("Labels"), PROTECT(get_labels(R_distances, R_indices)));
+		UNPROTECT(1);
 	}
 
-	UNPROTECT(7);
+	UNPROTECT(6);
 	return R_output_dists;
 }
 
