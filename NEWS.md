@@ -1,4 +1,6 @@
-# distances devel
+# distances 0.1.5
+
+  * Fixes compilation errors for C++ code on Solaris.
 
 
 # distances 0.1.4

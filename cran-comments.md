@@ -4,7 +4,7 @@
      - 3.5.1
 
   * x86_64-w64-mingw32 (win-builder)
-     - 3.5.1, devel
+     - 3.4.4, 3.5.1, devel
 
   * x86_64-pc-linux-gnu (travis-ci)
      - 3.4.0, 3.4.1, 3.4.2, 3.4.3, 3.4.4, 3.5.0,
@@ -22,7 +22,7 @@
 
   * No ERRORs.
 
-  * No WARNINGs. 
+  * No WARNINGs.
 
   * No NOTEs.
 

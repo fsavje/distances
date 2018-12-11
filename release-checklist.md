@@ -1,23 +1,23 @@
 ## Submit release
 
 * Check and fix any errors at https://cran.r-project.org/web/checks/check_results_distances.html
-* Delete content of `NAMESPACE` and run `document()`
-* Run `load_all(recompile = TRUE)`, `test()` and `check()`
-* Run `build_win(version = "R-release")` and `build_win(version = "R-devel")`
-* Run `revdep_check()`, remove `revdep` folder when done
+* Delete content of `NAMESPACE` and run `devtools::document()`
+* Run `devtools::load_all(recompile = TRUE)`, `devtools::test()` and `devtools::check()`
+* Run `devtools::check_win_devel()`, `devtools::check_win_release()` and `devtools::check_win_oldrelease()`
+* Run `revdepcheck::revdep_check()`, remove "revdep" folder when done
 * Update package information
 	- Set new version number in `DESCRIPTION`
 	- Set release date in `DESCRIPTION`
 	- Change "distances devel" to "distances VERSION" in `NEWS.md`
+    - Update travis and appveyor with current versions
 	- Update `cran-comments.md` with correct information
-	- Update travis and appveyor with current versions
 * Commit and push to github so automatic tests run
-* Run `load_all(recompile = TRUE)`, `test()` and `check()`
-* Run `build_win(version = "R-release")` and `build_win(version = "R-devel")`
-* Run `revdep_check()`, remove revdep folder when done
+* Run `devtools::load_all(recompile = TRUE)`, `devtools::test()` and `devtools::check()`
+* Run `devtools::check_win_devel()`, `devtools::check_win_release()` and `devtools::check_win_oldrelease()`
+* Run `revdepcheck::revdep_check()`, remove "revdep" folder when done
 * Wait until all tests are done
 * Submit to CRAN
-	- Run `build()`
+	- Run `devtools::build()`
 	- Upload to http://cran.r-project.org/submit.html
 	- Add `cran-comments.md` as comment
 
