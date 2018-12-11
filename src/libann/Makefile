@@ -1,7 +1,3 @@
-include $(MAKECONF)
-
-LIBOUT = lib/libann.a
-
 LIBOBJS = \
 	src/ANN.o \
 	src/brute.o \
@@ -18,16 +14,8 @@ LIBOBJS = \
 	src/bd_fix_rad_search.o \
 	src/perf.o
 
-.PHONY: all clean
+libann.a: $(LIBOBJS)
+	$(R_AR) -rcs libann.a $^
 
-all: $(LIBOUT)
-
-$(LIBOUT): $(LIBOBJS)
-	mkdir -p lib
-	$(AR) -rcs $(LIBOUT) $^
-
-%.o: %.cpp
-	$(CXX98) -c $(CXX98STD) $(ALL_CPPFLAGS) $(R_XTRA_CXXFLAGS) $(CXX98PICFLAGS) $(CXX98FLAGS) -DNDEBUG -Iinclude $< -o $@
-
-clean:
-	$(RM) -rf lib src/*.o
+.cpp.o:
+	$(R_CXX) $(R_CPPFLAGS) $(R_ALL_CXXFLAGS) -Iinclude -c $< -o $@

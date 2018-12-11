@@ -1,14 +1,7 @@
-MAKECONF = $(R_HOME)/etc$(R_ARCH)/Makeconf
+CXX_STD = CXX98
+PKG_LIBS = libann/libann.a
 
-PKG_LIBS = libann/lib/libann.a
+$(SHLIB): libann/libann.a
 
-.PHONY: clean
-
-$(SHLIB): libann/lib/libann.a
-
-libann/lib/libann.a:
-	(cd libann && MAKECONF="$(MAKECONF)" $(MAKE)) || exit 1;
-
-clean:
-	$(RM) $(SHLIB) *.o
-	(cd libann && MAKECONF="$(MAKECONF)" $(MAKE) clean) || exit 1;
+libann/libann.a:
+	(cd libann && R_AR="$(AR)" R_CXX="$(CXX)" R_CPPFLAGS="-DNDEBUG $(CPPFLAGS)" R_ALL_CXXFLAGS="$(ALL_CXXFLAGS)" $(MAKE)) || exit 1;
