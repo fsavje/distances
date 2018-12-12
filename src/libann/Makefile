@@ -17,7 +17,7 @@ LIBOBJS = \
 libann.a: $(LIBOBJS)
 	$(R_AR) -rcs libann.a $^
 
-.cpp.o:
+%.o: %.cpp
 	$(R_CXX) $(R_CPPFLAGS) $(R_CXXFLAGS) -Iinclude -c $< -o $@
 
 clean:
