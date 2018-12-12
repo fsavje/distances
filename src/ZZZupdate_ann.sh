@@ -44,14 +44,14 @@ LIBOBJS = \\
 	src/bd_fix_rad_search.o \\
 	src/perf.o
 
-.PHONY: clean
-
 libann.a: \$(LIBOBJS)
 	\$(R_AR) -rcs libann.a \$^
 
 .cpp.o:
-	\$(R_CXX) \$(R_CPPFLAGS) \$(R_ALL_CXXFLAGS) -Iinclude -c \$< -o \$@
+	\$(R_CXX) \$(R_CPPFLAGS) \$(R_CXXFLAGS) -Iinclude -c \$< -o \$@
 
 clean:
 	\$(R_RM) libann.a \$(LIBOBJS)
+
+.PHONY: clean
 EOF
