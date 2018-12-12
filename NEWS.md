@@ -1,5 +1,6 @@
-# distances devel
+# distances 0.1.6
 
+  * Fixes incompatibility error with Sun make.
 
 
 # distances 0.1.5
