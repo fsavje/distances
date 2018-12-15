@@ -133,7 +133,7 @@ bool idist_nearest_neighbor_search(idist_NNSearch* const nn_search_object,
 	ANNpointSet* const search_tree = nn_search_object->search_tree;
 	idist_assert(search_tree != NULL);
 
-   const int* const search_indices = nn_search_object->search_indices;
+	const int* const search_indices = nn_search_object->search_indices;
 
 	idist_assert(k > 0);
 	idist_assert(!radius_search || (radius > 0.0));
@@ -166,7 +166,7 @@ bool idist_nearest_neighbor_search(idist_NNSearch* const nn_search_object,
 			                        k_int,          // number of neighbors
 			                        write_nnidx,    // pointer to start of index result
 			                        dist_scratch,   // pointer to start of distance result
-			                        DIST_ANN_EPS);   // error margin
+			                        DIST_ANN_EPS);  // error margin
 			if (search_indices == NULL) {
 				// Sequential indices, all done
 				write_nnidx += k;
@@ -195,7 +195,7 @@ bool idist_nearest_neighbor_search(idist_NNSearch* const nn_search_object,
 			                                                k_int,                    // number of neighbors
 			                                                write_nnidx,              // pointer to start of index result
 			                                                dist_scratch,             // pointer to start of distance result
-			                                                DIST_ANN_EPS);             // error margin
+			                                                DIST_ANN_EPS);            // error margin
 			if (num_found >= k_int) {
 				if (search_indices == NULL) {
 					// Sequential indices, all done
