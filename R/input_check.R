@@ -126,6 +126,8 @@ coerce_distance_data <- function(data,
       if (!is.double(data[, col])) {
         if (is.numeric(data[, col])) {
           data[, col] <- as.double(data[, col])
+        } else if (is.logical(data[, col])) {
+          data[, col] <- as.double(data[, col])
         } else if (is.factor(data[, col])) {
           new_warning("Factor columns in `", match.call()$data, "` are coerced to numeric.")
           data[, col] <- as.double(data[, col])

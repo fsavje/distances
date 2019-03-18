@@ -142,6 +142,8 @@ test_that("`coerce_distance_data` checks input.", {
   expect_silent(t_coerce_distance_data(t_data = matrix(1:10, nrow = 5)))
   expect_silent(t_coerce_distance_data(t_data = 1:10))
   expect_silent(t_coerce_distance_data(t_data = data.frame(matrix(1:10, nrow = 5))))
+  expect_silent(t_coerce_distance_data(t_data = data.frame(x = 1:10,
+                                                           y = rep(c(TRUE, FALSE), 5))))
   expect_silent(t_coerce_distance_data(t_id_variable = letters[1:5]))
   expect_silent(t_coerce_distance_data(t_data = t_distance_data_frame,
                                        t_id_variable = "id"))
