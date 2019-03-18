@@ -29,10 +29,13 @@
 
 ## Downstream dependencies
 
-  All downstream dependencies have been checked. No issues were reported:
+  Downstream dependencies checked:
 
-  * quickblock: 0 errors | 0 warnings | 0 notes
+  * quickblock 0.2.0       ── E: 0     | W: 0     | N: 0
+  * quickmatch 0.2.1       ── E: 0     | W: 0     | N: 0
+  * scclust 0.2.2          ── E: 0     | W: 0     | N: 0
 
-  * quickmatch: 0 errors | 0 warnings | 0 notes
+  Downstream dependencies not checked due to installation errors:
 
-  * scclust   : 0 errors | 0 warnings | 0 notes
+  * liayson 1.0.1
+  * StempCens 0.1.0
