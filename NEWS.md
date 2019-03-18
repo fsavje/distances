@@ -4,7 +4,7 @@
 
 # distances 0.1.7
 
-    * Add support for logical
+  * Add support for logical.
 
 
 # distances 0.1.6
