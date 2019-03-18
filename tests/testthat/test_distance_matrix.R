@@ -32,6 +32,10 @@ my_dist <- dist(my_data_points_matrix)
 dimnames(my_data_points_matrix)[[1]] <- letters[1:10]
 my_dist_withID <- dist(my_data_points_matrix)
 
+my_data_points_log <- data.frame(x = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                                 y = rep(c(TRUE, FALSE), 5))
+my_distances_log <- distances(my_data_points_log)
+my_dist_log <- dist(my_data_points_log)
 
 # ==============================================================================
 # distance_matrix
@@ -49,6 +53,7 @@ replica_distance_matrix <- function(x,
 
 test_that("`distance_matrix` returns correct output", {
   expect_identical(distance_matrix(my_distances), replica_distance_matrix(my_dist))
+  expect_identical(distance_matrix(my_distances_log), replica_distance_matrix(my_dist_log))
   expect_identical(distance_matrix(my_distances, indices = 1:10), replica_distance_matrix(my_dist, indices = 1:10))
   expect_identical(distance_matrix(my_distances, indices = 4:8), replica_distance_matrix(my_dist, indices = 4:8))
   expect_identical(distance_matrix(my_distances_withID), replica_distance_matrix(my_dist_withID))

@@ -4,18 +4,18 @@
      - 3.5.1
 
   * x86_64-w64-mingw32 (win-builder)
-     - 3.4.4, 3.5.1, devel
+     - 3.4.4, 3.5.3, devel
 
   * x86_64-pc-linux-gnu (travis-ci)
      - 3.4.0, 3.4.1, 3.4.2, 3.4.3, 3.4.4, 3.5.0,
-       3.5.1, devel
+       3.5.1, 3.5.2, devel
 
   * x86_64-w64-mingw32/x64 (appveyor)
      - 3.4.0, 3.4.1, 3.4.2, 3.4.3, 3.4.4, 3.5.0,
-       3.5.1, devel
+       3.5.1, 3.5.2, 3.5.3, devel
 
   * i386-w64-mingw32/i386 (appveyor)
-     - 3.4.4, 3.5.1, devel
+     - 3.4.4, 3.5.3, devel
 
 
 ## R CMD check results
