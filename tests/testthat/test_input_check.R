@@ -43,8 +43,10 @@ t_new_warning <- function(...) {
 
 test_that("`new_error` & `new_warning` make warnings and errors.", {
   expect_error(t_new_error("This is an error."),
+               class = c("error", "condition"),
                regexp = "This is an error.")
   expect_error(t_new_error("This is", " also ", "an error."),
+               class = c("error", "condition"),
                regexp = "This is also an error.")
   expect_warning(t_new_warning("This is a warning."),
                  regexp = "This is a warning.")
@@ -64,6 +66,7 @@ t_ensure_distances <- function(t_distances = distances(matrix(1:10, nrow = 5))) 
 test_that("`ensure_distances` checks input.", {
   expect_silent(t_ensure_distances())
   expect_error(t_ensure_distances(t_distances = "a"),
+               class = c("error", "condition"),
                regexp = "`t_distances` is not a `distances` object.")
 })
 
@@ -79,15 +82,20 @@ t_coerce_args <- function(t_arg = "abc",
 
 test_that("`coerce_args` checks input.", {
   expect_silent(t_coerce_args())
-  expect_error(t_coerce_args(t_choices = 1L))
+  expect_error(t_coerce_args(t_choices = 1L),
+               class = c("error", "condition"))
   expect_error(t_coerce_args(t_choices = character()))
   expect_error(t_coerce_args(t_arg = 1L),
+               class = c("error", "condition"),
                regexp = "`t_arg` must be character scalar.")
   expect_error(t_coerce_args(t_arg = c("a", "z")),
+               class = c("error", "condition"),
                regexp = "`t_arg` must be character scalar.")
   expect_error(t_coerce_args(t_arg = "nonexist"),
+               class = c("error", "condition"),
                regexp = "`t_arg` must be one of \"abcdef\", \"123456\", \"xzy\", \"amb\".")
   expect_error(t_coerce_args(t_arg = "a"),
+               class = c("error", "condition"),
                regexp = "`t_arg` must be one of \"abcdef\", \"123456\", \"xzy\", \"amb\".")
 })
 
@@ -111,6 +119,7 @@ test_that("`coerce_character` checks input.", {
   expect_silent(t_coerce_character())
   expect_silent(t_coerce_character(t_req_length = 10))
   expect_error(t_coerce_character(t_req_length = 8),
+               class = c("error", "condition"),
                regexp = "`t_x` is not of length `t_req_length`.")
 })
 
@@ -151,17 +160,22 @@ test_that("`coerce_distance_data` checks input.", {
                                        t_id_variable = "id",
                                        t_dist_variables = c("x", "y")))
   expect_error(t_coerce_distance_data(t_data = dist(1:10)),
+               class = c("error", "condition"),
                regexp = "`t_data` must be vector, matrix or data frame.")
   expect_error(t_coerce_distance_data(t_data = matrix(1:2, nrow = 1)),
+               class = c("error", "condition"),
                regexp = "`t_data` must contain at least two data points.")
   expect_error(t_coerce_distance_data(t_dist_variables = "X1"),
+               class = c("error", "condition"),
                regexp = "`t_dist_variables` must be NULL when `t_data` is matrix or vector.")
   expect_error(t_coerce_distance_data(t_data = t_distance_data_frame,
                                       t_id_variable = "xxx"),
+               class = c("error", "condition"),
                regexp = "`t_id_variable` does not exists as column in `t_data`.")
   expect_error(t_coerce_distance_data(t_data = t_distance_data_frame,
                                       t_id_variable = "id",
                                       t_dist_variables = c("x", "nkjsne")),
+               class = c("error", "condition"),
                regexp = "Some entries in `t_dist_variables` do not exist as columns in `t_data`.")
   expect_warning(t_coerce_distance_data(t_data = data.frame(x = 1:10,
                                                             y = factor(1:10))),
@@ -169,12 +183,16 @@ test_that("`coerce_distance_data` checks input.", {
   expect_error(t_coerce_distance_data(t_data = data.frame(x = 1:10,
                                                           y = letters[1:10],
                                                           stringsAsFactors = FALSE)),
+               class = c("error", "condition"),
                regexp = "Cannot coerce all data columns in `t_data` to numeric.")
   expect_error(t_coerce_distance_data(t_data = matrix(letters[1:10], nrow = 5)),
+               class = c("error", "condition"),
                regexp = "`t_data` must be numeric.")
   expect_error(t_coerce_distance_data(t_data = matrix(c(1:9, NA), nrow = 5)),
+               class = c("error", "condition"),
                regexp = "`t_data` may not contain NAs.")
   expect_error(t_coerce_distance_data(t_id_variable = 1:4),
+               class = c("error", "condition"),
                regexp = "`t_id_variable` does not match `t_data`.")
 })
 
@@ -229,6 +247,7 @@ test_that("`coerce_double` checks input.", {
   expect_silent(t_coerce_double(t_x = NULL))
   expect_silent(t_coerce_double(t_x = 1:10))
   expect_error(t_coerce_double(t_x = letters[1:10]),
+               class = c("error", "condition"),
                regexp = "`t_x` must be double or NULL.")
 })
 
@@ -252,6 +271,7 @@ test_that("`coerce_integer` checks input.", {
   expect_silent(t_coerce_integer(t_x = NULL))
   expect_silent(t_coerce_integer(t_x = as.numeric(1:10)))
   expect_error(t_coerce_integer(t_x = letters[1:10]),
+               class = c("error", "condition"),
                regexp = "`t_x` must be integer or NULL.")
 })
 
@@ -278,17 +298,23 @@ test_that("`coerce_norm_matrix` checks input.", {
   expect_silent(t_coerce_norm_matrix(t_mat = matrix(diag(rep(1, 4)), ncol = 4,
                                                     dimnames = list(c(1:4), letters[1:4]))))
   expect_error(t_coerce_norm_matrix(t_mat = dist(1:4)),
+               class = c("error", "condition"),
                regexp = "`t_mat` must be matrix, data.frame or vector.")
   expect_error(t_coerce_norm_matrix(t_mat = matrix(letters[1:16], ncol = 4)),
+               class = c("error", "condition"),
                regexp = "`t_mat` must be numeric.")
   expect_error(t_coerce_norm_matrix(t_mat = c(1, NA, 1, 1)),
+               class = c("error", "condition"),
                regexp = "`t_mat` may not contain NAs.")
   expect_error(t_coerce_norm_matrix(t_mat = matrix(1:16, ncol = 4)),
+               class = c("error", "condition"),
                regexp = "`t_mat` must be symmetric.")
   expect_error(t_coerce_norm_matrix(t_num_cov = 3),
+               class = c("error", "condition"),
                regexp = "The dimensions of `t_mat` do not correspond to `t_num_cov`.")
   expect_error(t_coerce_norm_matrix(t_mat = matrix(c(-1, 2, 2, 3), ncol = 2),
                                     t_num_cov = 2),
+               class = c("error", "condition"),
                regexp = "`t_mat` must be positive-semidefinite.")
 })
 

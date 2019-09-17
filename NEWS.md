@@ -1,5 +1,6 @@
-# distances devel
+# distances 0.1.8
 
+  * Change to C++17 compiler for ANN.
 
 
 # distances 0.1.7

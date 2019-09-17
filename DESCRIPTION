@@ -1,8 +1,8 @@
 Package: distances
 Type: Package
 Title: Tools for Distance Metrics
-Version: 0.1.7.9000
-Date: 2019-03-18
+Version: 0.1.8
+Date: 2019-09-16
 Authors@R: c(person("Fredrik", "Savje", email = "fredrik.savje@yale.edu", role = c("aut", "cre")))
 Description: Provides tools for constructing, manipulating and using distance metrics.
 Depends:

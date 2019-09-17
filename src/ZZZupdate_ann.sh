@@ -27,6 +27,48 @@ ed -s libann/src/kd_dump.cpp <<EOF
 q
 EOF
 
+ed -s libann/src/ANN.cpp <<EOF
+,s/register //g
+,w
+q
+EOF
+
+ed -s libann/src/kd_fix_rad_search.cpp <<EOF
+,s/register //g
+,w
+q
+EOF
+
+ed -s libann/src/kd_pr_search.cpp <<EOF
+,s/register //g
+,w
+q
+EOF
+
+ed -s libann/src/kd_search.cpp <<EOF
+,s/register //g
+,w
+q
+EOF
+
+ed -s libann/src/kd_util.cpp <<EOF
+,s/register //g
+,w
+q
+EOF
+
+ed -s libann/src/pr_queue.h <<EOF
+,s/register //g
+,w
+q
+EOF
+
+ed -s libann/src/pr_queue_k.h <<EOF
+,s/register //g
+,w
+q
+EOF
+
 cat <<EOF > libann/Makefile
 LIBOBJS = \\
 	src/ANN.o \\

@@ -1,4 +1,3 @@
-CXX_STD = CXX98
 PKG_LIBS = libann/libann.a
 
 $(SHLIB): libann/libann.a
