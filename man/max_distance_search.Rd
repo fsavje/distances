@@ -4,8 +4,7 @@
 \alias{max_distance_search}
 \title{Max distance search}
 \usage{
-max_distance_search(distances, query_indices = NULL,
-  search_indices = NULL)
+max_distance_search(distances, query_indices = NULL, search_indices = NULL)
 }
 \arguments{
 \item{distances}{A \code{\link{distances}} object.}

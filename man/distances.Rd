@@ -4,8 +4,13 @@
 \alias{distances}
 \title{Constructor for distance metric objects}
 \usage{
-distances(data, id_variable = NULL, dist_variables = NULL,
-  normalize = NULL, weights = NULL)
+distances(
+  data,
+  id_variable = NULL,
+  dist_variables = NULL,
+  normalize = NULL,
+  weights = NULL
+)
 }
 \arguments{
 \item{data}{a matrix or data frame containing the data points between distances should be derived.}

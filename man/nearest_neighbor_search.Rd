@@ -4,8 +4,13 @@
 \alias{nearest_neighbor_search}
 \title{Nearest neighbor search}
 \usage{
-nearest_neighbor_search(distances, k, query_indices = NULL,
-  search_indices = NULL, radius = NULL)
+nearest_neighbor_search(
+  distances,
+  k,
+  query_indices = NULL,
+  search_indices = NULL,
+  radius = NULL
+)
 }
 \arguments{
 \item{distances}{A \code{\link{distances}} object.}
