@@ -1,8 +1,6 @@
 # distances
 
 [![CRAN Status](https://www.r-pkg.org/badges/version/distances)](https://cran.r-project.org/package=distances)
-[![Build Status](https://travis-ci.org/fsavje/distances.svg?branch=master)](https://travis-ci.org/fsavje/distances)
-[![Build status](https://ci.appveyor.com/api/projects/status/x6eqojpbbfk6c0fm/branch/master?svg=true)](https://ci.appveyor.com/project/fsavje/distances/branch/master)
 
 The `distances` package provides tools for constructing, manipulating and using distance metrics in R. It calculates distances only as needed (unlike the standard `dist` function which derives the complete distance matrix when called). This saves memory and can increase speed. The package also includes functions for fast nearest and farthest neighbor searching.
 
