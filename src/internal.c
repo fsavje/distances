@@ -46,7 +46,7 @@ SEXP get_labels(const SEXP R_distances,
 			idist_assert(isNull(R_ids));
 			char tmp_str[255];
 			for (size_t p = 0; p < len_indices; ++p) {
-				sprintf(tmp_str, "%d", indices[p]);
+				snprintf(tmp_str, 255, "%d", indices[p]);
 				SET_STRING_ELT(out_labels, p, mkChar(tmp_str));
 			}
 		}
@@ -60,7 +60,7 @@ SEXP get_labels(const SEXP R_distances,
 			out_labels = PROTECT(allocVector(STRSXP, (R_xlen_t) num_data_points));
 			char tmp_str[255];
 			for (int p = 0; p < num_data_points; ++p) {
-				sprintf(tmp_str, "%d", p + 1);
+				snprintf(tmp_str, 255, "%d", p + 1);
 				SET_STRING_ELT(out_labels, p, mkChar(tmp_str));
 			}
 		}
