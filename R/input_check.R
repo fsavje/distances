@@ -123,14 +123,14 @@ coerce_distance_data <- function(data,
       data <- data[, as.character(dist_variables), drop = FALSE]
     }
     for (col in names(data)) {
-      if (!is.double(data[, col])) {
-        if (is.numeric(data[, col])) {
-          data[, col] <- as.double(data[, col])
-        } else if (is.logical(data[, col])) {
-          data[, col] <- as.double(data[, col])
-        } else if (is.factor(data[, col])) {
+      if (!is.double(data[, col, drop = TRUE])) {
+        if (is.numeric(data[, col, drop = TRUE])) {
+          data[, col] <- as.double(data[, col, drop = TRUE])
+        } else if (is.logical(data[, col, drop = TRUE])) {
+          data[, col] <- as.double(data[, col, drop = TRUE])
+        } else if (is.factor(data[, col, drop = TRUE])) {
           new_warning("Factor columns in `", match.call()$data, "` are coerced to numeric.")
-          data[, col] <- as.double(data[, col])
+          data[, col] <- as.double(data[, col, drop = TRUE])
         } else {
           new_error("Cannot coerce all data columns in `", match.call()$data, "` to numeric.")
         }
