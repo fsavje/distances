@@ -1,10 +1,10 @@
 ## Test environments
 
   * aarch64-apple-darwin20 (local machine)
-     - 4.2.1
+     - 4.3.2
 
   * x86_64-w64-mingw32 (win-builder)
-     - 4.1.3, 4.2.2, devel
+     - 4.2.3, 4.3.2, devel
 
 
 ## R CMD check results
