@@ -28,5 +28,5 @@ void idist_error__(const char* const msg,
                    const int line) {
 	char error_buffer[255];
 	snprintf(error_buffer, 255, "(%s:%d) %s", file, line, msg);
-	error(error_buffer);
+	error("%s", error_buffer);
 }
