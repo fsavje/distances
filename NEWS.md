@@ -1,5 +1,3 @@
-# distances devel
-
 # distances 0.1.10
 
   * Use string literals when calling R internal function `error()` for error messaging.
