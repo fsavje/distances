@@ -1,9 +1,9 @@
 Package: distances
 Type: Package
 Title: Tools for Distance Metrics
-Version: 0.1.10.9000
-Date: 2023-11-28
-Authors@R: c(person("Fredrik", "Savje", email = "fredrik.savje@yale.edu", role = c("aut", "cre")))
+Version: 0.1.12
+Date: 2025-04-01
+Authors@R: c(person("Fredrik", "Savje", email = "rpackages@fredriksavje.com", role = c("aut", "cre")))
 Description: Provides tools for constructing, manipulating and using distance metrics.
 Depends:
     R (>= 3.4.0)
@@ -18,4 +18,4 @@ LicenseNote: The distances packages includes the ANN library
 URL: https://github.com/fsavje/distances
 BugReports: https://github.com/fsavje/distances/issues
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
