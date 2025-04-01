@@ -1,3 +1,13 @@
+# distances 0.1.12
+
+  * Make ANN library use R internal error handling.
+
+
+# distances 0.1.11
+
+  * Update email address.
+
+
 # distances 0.1.10
 
   * Use string literals when calling R internal function `error()` for error messaging.
