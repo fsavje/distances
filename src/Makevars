@@ -3,7 +3,7 @@ PKG_LIBS = libann/libann.a
 $(SHLIB): libann/libann.a
 
 libann/libann.a:
-	(cd libann && R_AR="$(AR)" R_CXX="$(CXX)" R_CPPFLAGS="-DNDEBUG $(CPPFLAGS)" R_CXXFLAGS="$(CXXPICFLAGS) $(CXXFLAGS)" $(MAKE)) || exit 1;
+	(cd libann && R_AR="$(AR)" R_CXX="$(CXX)" R_CPPFLAGS="-DNDEBUG $(CPPFLAGS)" R_CXXFLAGS="$(CXXPICFLAGS) $(CXXFLAGS)" R_INCLUDE_DIR="$(R_INCLUDE_DIR)" $(MAKE)) || exit 1;
 
 clean:
 	(cd libann && R_RM="$(RM)" $(MAKE) clean) || exit 1;
