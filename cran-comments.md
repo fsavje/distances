@@ -4,7 +4,7 @@
      - 4.4.2
 
   * x86_64-w64-mingw32 (win-builder)
-     - 4.3.3, 4.4.3, devel
+     - 4.3.3, 4.4.3, 4.5.0 beta
 
 
 ## R CMD check results
