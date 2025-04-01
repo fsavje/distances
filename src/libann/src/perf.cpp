@@ -103,34 +103,35 @@ DLL_API void annUpdateStats()				// update stats with current counts
 	ann_float_ops += ann_Nfloat_ops;
 }
 
-										// print a single statistic
-void print_one_stat(const char* title, ANNsampStat s, double div)
-{
-	cout << title << "= [ ";
-	cout.width(9); cout << s.mean()/div			<< " : ";
-	cout.width(9); cout << s.stdDev()/div		<< " ]<";
-	cout.width(9); cout << s.min()/div			<< " , ";
-	cout.width(9); cout << s.max()/div			<< " >\n";
-}
+//										// print a single statistic
+//void print_one_stat(const char* title, ANNsampStat s, double div)
+//{
+//	cout << title << "= [ ";
+//	cout.width(9); cout << s.mean()/div			<< " : ";
+//	cout.width(9); cout << s.stdDev()/div		<< " ]<";
+//	cout.width(9); cout << s.min()/div			<< " , ";
+//	cout.width(9); cout << s.max()/div			<< " >\n";
+//}
 
-DLL_API void annPrintStats(				// print statistics for a run
-	ANNbool validate)					// true if average errors desired
-{
-	cout.precision(4);					// set floating precision
-	cout << "  (Performance stats: "
-		 << " [      mean :    stddev ]<      min ,       max >\n";
-	print_one_stat("    leaf_nodes       ", ann_visit_lfs, 1);
-	print_one_stat("    splitting_nodes  ", ann_visit_spl, 1);
-	print_one_stat("    shrinking_nodes  ", ann_visit_shr, 1);
-	print_one_stat("    total_nodes      ", ann_visit_nds, 1);
-	print_one_stat("    points_visited   ", ann_visit_pts, 1);
-	print_one_stat("    coord_hits/pt    ", ann_coord_hts, ann_Ndata_pts);
-	print_one_stat("    floating_ops_(K) ", ann_float_ops, 1000);
-	if (validate) {
-		print_one_stat("    average_error    ", ann_average_err, 1);
-		print_one_stat("    rank_error       ", ann_rank_err, 1);
-	}
-	cout.precision(0);					// restore the default
-	cout << "  )\n";
-	cout.flush();
-}
+//DLL_API void annPrintStats(				// print statistics for a run
+//	ANNbool validate)					// true if average errors desired
+//{
+//	cout.precision(4);					// set floating precision
+//	cout << "  (Performance stats: "
+//		 << " [      mean :    stddev ]<      min ,       max >\n";
+//	print_one_stat("    leaf_nodes       ", ann_visit_lfs, 1);
+//	print_one_stat("    splitting_nodes  ", ann_visit_spl, 1);
+//	print_one_stat("    shrinking_nodes  ", ann_visit_shr, 1);
+//	print_one_stat("    total_nodes      ", ann_visit_nds, 1);
+//	print_one_stat("    points_visited   ", ann_visit_pts, 1);
+//	print_one_stat("    coord_hits/pt    ", ann_coord_hts, ann_Ndata_pts);
+//	print_one_stat("    floating_ops_(K) ", ann_float_ops, 1000);
+//	if (validate) {
+//		print_one_stat("    average_error    ", ann_average_err, 1);
+//		print_one_stat("    rank_error       ", ann_rank_err, 1);
+//	}
+//	cout.precision(0);					// restore the default
+//	cout << "  )\n";
+//	cout.flush();
+//}
+//
