@@ -20,3 +20,16 @@ Bug reports and suggestions are greatly appreciated. They
 are best reported here:
 \url{https://github.com/fsavje/distances/issues/new}.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/fsavje/distances}
+  \item Report bugs at \url{https://github.com/fsavje/distances/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Fredrik Savje \email{rpackages@fredriksavje.com}
+
+}
+\keyword{internal}

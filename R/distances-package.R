@@ -35,9 +35,8 @@
 #' are best reported here:
 #' \url{https://github.com/fsavje/distances/issues/new}.
 #'
-#' @docType package
-#' @name distances-package
-NULL
+#' @keywords internal
+"_PACKAGE"
 
 #' @useDynLib distances, .registration = TRUE
 .onUnload <- function (libpath) {
