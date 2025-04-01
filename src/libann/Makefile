@@ -18,7 +18,7 @@ libann.a: $(LIBOBJS)
 	$(R_AR) -rcs libann.a $^
 
 %.o: %.cpp
-	$(R_CXX) $(R_CPPFLAGS) $(R_CXXFLAGS) -Iinclude -c $< -o $@
+	$(R_CXX) $(R_CPPFLAGS) $(R_CXXFLAGS) -Iinclude -I"$(R_INCLUDE_DIR)" -c $< -o $@
 
 clean:
 	$(R_RM) libann.a $(LIBOBJS)
