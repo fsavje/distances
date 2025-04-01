@@ -64,8 +64,8 @@ bool idist_init_nearest_neighbor_search(SEXP R_distances,
 	idist_assert(out_nn_search_object != NULL);
 
 	double* const raw_data_matrix = REAL(R_distances);
-	const int num_dimensions = INTEGER(getAttrib(R_distances, R_DimSymbol))[0];
-	const int num_data_points = INTEGER(getAttrib(R_distances, R_DimSymbol))[1];
+	const int num_dimensions = INTEGER(Rf_getAttrib(R_distances, R_DimSymbol))[0];
+	const int num_data_points = INTEGER(Rf_getAttrib(R_distances, R_DimSymbol))[1];
 
 	const size_t num_search_points = (search_indices == NULL) ? static_cast<size_t>(num_data_points) : len_search_indices;
 
@@ -143,8 +143,8 @@ bool idist_nearest_neighbor_search(idist_NNSearch* const nn_search_object,
 	const int k_int = static_cast<int>(k);
 
 	double* const raw_data_matrix = REAL(R_distances);
-	const int num_dimensions = INTEGER(getAttrib(R_distances, R_DimSymbol))[0];
-	const int num_data_points = INTEGER(getAttrib(R_distances, R_DimSymbol))[1];
+	const int num_dimensions = INTEGER(Rf_getAttrib(R_distances, R_DimSymbol))[0];
+	const int num_data_points = INTEGER(Rf_getAttrib(R_distances, R_DimSymbol))[1];
 
 	const int num_queries = (query_indices == NULL) ? num_data_points : (int) len_query_indices;
 
